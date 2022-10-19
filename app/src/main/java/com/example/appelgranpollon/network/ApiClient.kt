@@ -9,14 +9,14 @@ import retrofit2.http.Query
 
 interface ApiClient {
 
-    @GET("cliente/buscar")
+    @GET("api/cliente/buscar")
     fun verifyClient(@Query("email") email:String,@Query("password") password:String):Call<ClientData>;
 
-    @GET("/cliente/listar")
+    @GET("api/cliente/listar")
     fun getClients():Call<List<ClientData>>;
 
-    @Headers("Content-Type: application/vnd.api+json")
-    @GET("/cliente/buscar/{id}")
+
+    @GET("api/cliente/buscar/{id}")
     fun getClientById(@Path("id") id:Int):Call<ClientData>;
 
 

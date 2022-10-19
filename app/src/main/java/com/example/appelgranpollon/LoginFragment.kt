@@ -1,5 +1,6 @@
 package com.example.appelgranpollon
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -11,6 +12,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.navigation.Navigation
 import com.example.appelgranpollon.Models.ClientData
+import com.example.appelgranpollon.Services.SharedPrefs
 import com.example.appelgranpollon.network.ApiClient
 import com.example.appelgranpollon.network.RestEngine
 import com.google.android.material.textfield.TextInputEditText
@@ -81,9 +83,17 @@ class LoginFragment : Fragment() {
                             client = Gson().getAdapter(ClientData::class.java).fromJson(response.errorBody()
                                 ?.string());
                             println(client);
-                            Log.d("LOGGING",client.dni)
+                            Log.d("LOGGING",client.name)
                             if(inputEmail.text.toString() == client.email && inputPassword.text.toString() == client.password){
                                 Navigation.findNavController(viewOfLayout).navigate(R.id.homeFragment)
+
+                                val sharedPref = viewOfLayout.context.getSharedPreferences("user",Context.MODE_PRIVATE);
+                                SharedPrefs(viewOfLayout.context).saveUser(Gson().toJson(client));
+
+
+
+
+
 
                             }else{
                                 Toast.makeText(context,"Usuario Invalido",Toast.LENGTH_SHORT).show();
