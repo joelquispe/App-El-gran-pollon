@@ -87,14 +87,7 @@ class LoginFragment : Fragment() {
                             if(inputEmail.text.toString() == client.email && inputPassword.text.toString() == client.password){
                                 Navigation.findNavController(viewOfLayout).navigate(R.id.homeFragment)
 
-                                val sharedPref = viewOfLayout.context.getSharedPreferences("user",Context.MODE_PRIVATE);
                                 SharedPrefs(viewOfLayout.context).saveUser(Gson().toJson(client));
-
-
-
-
-
-
                             }else{
                                 Toast.makeText(context,"Usuario Invalido",Toast.LENGTH_SHORT).show();
                             }
