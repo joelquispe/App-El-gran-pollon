@@ -70,7 +70,7 @@ class LoginFragment : Fragment() {
             lateinit var client:ClientData;
             validateEmpty(inputEmail.text.toString(),inputPassword.text.toString(),viewOfLayout);
             if(isEmailValidate && isPasswordValidate){
-                var call= RestEngine.getRestEngine().create(ApiClient::class.java).getClientById(1);
+                var call= RestEngine.getRestEngine().create(ApiClient::class.java).verifyClient(inputEmail.text.toString(),inputPassword.text.toString());
                 call.enqueue(object : Callback<ClientData>{
                     override fun onFailure(call: Call<ClientData>?, t: Throwable) {
                         Log.d("LOGGING",t.message.toString())

@@ -4,12 +4,13 @@ import com.example.appelgranpollon.Models.ClientData
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Headers
+import retrofit2.http.POST
 import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface ApiClient {
 
-    @GET("api/cliente/buscar")
+    @POST("api/cliente/buscar")
     fun verifyClient(@Query("email") email:String,@Query("password") password:String):Call<ClientData>;
 
     @GET("api/cliente/listar")

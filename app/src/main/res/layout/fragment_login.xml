@@ -65,12 +65,14 @@
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:textColorHint="#020202"
+
             app:boxBackgroundColor="#00FFFFFF"
             app:startIconDrawable="@drawable/ic_baseline_key_24"
             app:startIconTint="@color/black"
             >
 
             <com.google.android.material.textfield.TextInputEditText
+                android:inputType="textPassword"
                 android:id="@+id/inputPassword"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
