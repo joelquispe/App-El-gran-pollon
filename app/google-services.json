@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "774538990734",
+    "project_id": "elgranpollon-1f1a1",
+    "storage_bucket": "elgranpollon-1f1a1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:774538990734:android:b4edd7e111acbc625b25df",
+        "android_client_info": {
+          "package_name": "com.example.appelgranpollon"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "774538990734-knd8a0qcn98ltutj7266fdkemlc0m234.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.appelgranpollon",
+            "certificate_hash": "decdafb48b0e7fe9cbb6c7340354b3b468cbbcb8"
+          }
+        },
+        {
+          "client_id": "774538990734-j1pvhiasdhnkc521gcndnsp2gmjg27ub.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDAaeuX2guhni3wBqAGn5pPOMlFcRJ3Qmk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "774538990734-j1pvhiasdhnkc521gcndnsp2gmjg27ub.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
