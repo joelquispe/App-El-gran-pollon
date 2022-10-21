@@ -34,10 +34,67 @@
         <action
             android:id="@+id/action_homeFragment_to_shoppingCartFragment"
             app:destination="@id/shoppingCartFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_detailsPlateFragment"
+            app:destination="@id/detailsPlateFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_categoryFragment"
+            app:destination="@id/categoryFragment" />
     </fragment>
     <fragment
         android:id="@+id/shoppingCartFragment"
         android:name="com.example.appelgranpollon.ShoppingCartFragment"
         android:label="fragment_shopping_cart"
-        tools:layout="@layout/fragment_shopping_cart" />
+        tools:layout="@layout/fragment_shopping_cart" >
+        <action
+            android:id="@+id/action_shoppingCartFragment_to_payFragment"
+            app:destination="@id/payFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/categoryFragment"
+        android:name="com.example.appelgranpollon.CategoryFragment"
+        android:label="fragment_category"
+        tools:layout="@layout/fragment_category" >
+        <action
+            android:id="@+id/action_categoryFragment_to_platesFragment"
+            app:destination="@id/platesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/payFragment"
+        android:name="com.example.appelgranpollon.PayFragment"
+        android:label="fragment_pay"
+        tools:layout="@layout/fragment_pay" />
+    <fragment
+        android:id="@+id/detailsPlateFragment"
+        android:name="com.example.appelgranpollon.DetailsPlateFragment"
+        android:label="fragment_details_plate"
+        tools:layout="@layout/fragment_details_plate" />
+    <fragment
+        android:id="@+id/motorizedFragment"
+        android:name="com.example.appelgranpollon.MotorizedFragment"
+        android:label="fragment_motorized"
+        tools:layout="@layout/fragment_motorized" >
+        <action
+            android:id="@+id/action_motorizedFragment_to_detailsOrderFragment"
+            app:destination="@id/detailsOrderFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailsOrderFragment"
+        android:name="com.example.appelgranpollon.DetailsOrderFragment"
+        android:label="fragment_details_order"
+        tools:layout="@layout/fragment_details_order" />
+    <fragment
+        android:id="@+id/platesFragment"
+        android:name="com.example.appelgranpollon.PlatesFragment"
+        android:label="fragment_plates"
+        tools:layout="@layout/fragment_plates" />
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.example.appelgranpollon.SplashFragment"
+        android:label="fragment_splash"
+        tools:layout="@layout/fragment_splash" >
+        <action
+            android:id="@+id/action_splashFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
 </navigation>

@@ -85,6 +85,7 @@ class LoginFragment : Fragment() {
                             println(client);
                             Log.d("LOGGING",client.name)
                             if(inputEmail.text.toString() == client.email && inputPassword.text.toString() == client.password){
+                                //navegacion entre pantallas
                                 Navigation.findNavController(viewOfLayout).navigate(R.id.homeFragment)
 
                                 SharedPrefs(viewOfLayout.context).saveUser(Gson().toJson(client));

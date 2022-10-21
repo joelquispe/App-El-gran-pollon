@@ -18,13 +18,13 @@ class RestEngine {
     companion object{
         fun getRestEngine():Retrofit{
             //sosaya
-            var ipsosaya = "http://192.168.18.45:8090/";
+            val ipsosaya = "http://192.168.18.45:8090/";
 
             //chipana
-            var ipchipana = "http://192.168.1.3:8090/";
+            val ipchipana = "http://192.168.1.3:8090/";
 
             //frank
-            var ipfrank = ""
+            val ipfrank = ""
 
             val interceptor = HttpLoggingInterceptor();
             interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
