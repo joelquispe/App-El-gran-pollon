@@ -33,24 +33,11 @@ private const val ARG_PARAM2 = "param2"
  */
 class LoginFragment : Fragment() {
     // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+
     private lateinit var viewOfLayout: View
     var isEmailValidate =false;
     var isPasswordValidate=false;
 
-
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -60,21 +47,22 @@ class LoginFragment : Fragment() {
 
 
         // Inflate the layout for this fragment
-        viewOfLayout =inflater!!.inflate(R.layout.fragment_login, container, false)
-
-        var boton:Button = viewOfLayout.findViewById<Button>(R.id.btnLogin);
-        var inputEmail = viewOfLayout.findViewById<TextInputEditText>(R.id.inputEmail);
-        var inputPassword = viewOfLayout.findViewById<TextInputEditText>(R.id.inputPassword);
-        var txtRegister = viewOfLayout.findViewById<TextView>(R.id.txtRegister);
+        viewOfLayout =inflater.inflate(R.layout.fragment_login, container, false)
+        verifyLogin();
+        val boton:Button = viewOfLayout.findViewById<Button>(R.id.btnLogin);
+        val inputEmail = viewOfLayout.findViewById<TextInputEditText>(R.id.inputEmail);
+        val inputPassword = viewOfLayout.findViewById<TextInputEditText>(R.id.inputPassword);
+        val txtRegister = viewOfLayout.findViewById<TextView>(R.id.txtRegister);
         boton.setOnClickListener (){
             lateinit var client:ClientData;
             validateEmpty(inputEmail.text.toString(),inputPassword.text.toString(),viewOfLayout);
             if(isEmailValidate && isPasswordValidate){
-                var call= RestEngine.getRestEngine().create(ApiClient::class.java).verifyClient(inputEmail.text.toString(),inputPassword.text.toString());
+                val call= RestEngine.getRestEngine().create(ApiClient::class.java).verifyClient(inputEmail.text.toString(),inputPassword.text.toString());
                 call.enqueue(object : Callback<ClientData>{
-                    override fun onFailure(call: Call<ClientData>?, t: Throwable) {
+                    override fun onFailure(call: Call<ClientData>, t: Throwable) {
                         Log.d("LOGGING",t.message.toString())
                     }
+
                     override fun onResponse(
                         call: Call<ClientData>?,
                         response: retrofit2.Response<ClientData>?
@@ -108,10 +96,20 @@ class LoginFragment : Fragment() {
 
         return viewOfLayout;
     }
-    fun validateEmpty(email:String,password:String,view: View){
-        var inputEmailLayout = view.findViewById<TextInputLayout>(R.id.inputEmailLayout);
-        var inputPasswordLayout = view.findViewById<TextInputLayout>(R.id.inputPasswordLayout);
-        var isEmailValid:Boolean = android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
+    fun verifyLogin(){
+        var data =  SharedPrefs(viewOfLayout.context).getUser();
+        val client:ClientData = Gson().fromJson(data,ClientData::class.java)
+        if(client != null){
+            Log.d("LOGGING",client.toString())
+
+        }
+
+
+    }
+    private fun validateEmpty(email:String, password:String, view: View){
+        val inputEmailLayout = view.findViewById<TextInputLayout>(R.id.inputEmailLayout);
+        val inputPasswordLayout = view.findViewById<TextInputLayout>(R.id.inputPasswordLayout);
+        val isEmailValid:Boolean = android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
 
         if(email.isEmpty()){
             inputEmailLayout.error ="Llenar el campo de correo";
@@ -142,23 +140,5 @@ class LoginFragment : Fragment() {
     }
 
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment LoginFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            LoginFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
-    }
+
 }

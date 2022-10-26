@@ -10,8 +10,12 @@ import retrofit2.http.Query
 
 interface ApiClient {
 
+    // consulta para loguearse
     @POST("api/cliente/buscar")
     fun verifyClient(@Query("email") email:String,@Query("password") password:String):Call<ClientData>;
+
+    @POST("api/cliente/registrar")
+    fun registerClient(@Query("email") email:String,@Query("password") password:String):Call<ClientData>;
 
     @GET("api/cliente/listar")
     fun getClients():Call<List<ClientData>>;

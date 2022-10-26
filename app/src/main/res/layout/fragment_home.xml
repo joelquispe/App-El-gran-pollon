@@ -13,17 +13,20 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:openDrawer="start"
+
         >
         <com.google.android.material.navigation.NavigationView
             android:id="@+id/navigationViewId"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="start"
-            android:background="@color/purple_700"
+            android:background="@color/purple_200"
+
             app:headerLayout="@layout/header_navigation_drawer"
             app:menu="@menu/navigation_drawer" />
         <RelativeLayout
             android:layout_width="match_parent"
+
             android:layout_height="match_parent">
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbarId"
@@ -33,9 +36,37 @@
                 app:navigationIcon="@drawable/ic_baseline_menu_24"
                 app:title="El gran pollon"
                 ></androidx.appcompat.widget.Toolbar>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center">
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="home"
+    android:textColor="@color/purple_200"></TextView>
+            </LinearLayout>
+
         </RelativeLayout>
     </androidx.drawerlayout.widget.DrawerLayout>
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
 
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/floating_action_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|right"
+            android:layout_margin="16dp"
+            app:backgroundTint="@color/purple_200"
+            android:contentDescription="sss"
+            app:srcCompat="@drawable/ic_baseline_shopping_cart_24"/>
+
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,6 +8,8 @@ data class ClientData (
     val email:String,
     val password:String,
     val address:String,
-    val phone:String
+    val district:String,
+    val phone:String,
+    val type_user:Int
 );
 

@@ -20,173 +20,280 @@
             android:layout_height="wrap_content"
             android:src="@drawable/logo" />
     </RelativeLayout>
-
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="450dp"
-        android:background="@drawable/shape_login_panel"
-        android:layout_marginBottom="50dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginTop="10dp"
-        android:orientation="vertical"
-        >
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/inputNameLayoutRegister"
-            android:layout_width="match_parent"
-            android:layout_height="74dp"
-            android:textColorHint="#020202"
-            app:boxBackgroundColor="#00FFFFFF"
-            app:startIconDrawable="@drawable/ic_baseline_account_circle_24"
-            app:startIconTint="@color/black"
-            >
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/inputNameRegister"
-                android:layout_width="match_parent"
-                android:layout_height="55dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="20dp"
-                android:background="@drawable/custom_input"
-                android:drawableTint="@color/black"
-                android:fontFamily="@font/abeezee"
-                android:hint="Nombres"
-                android:paddingStart="12dp"
-                android:textColor="#000000"
-                android:textColorHint="#000000"
-                android:textStyle="bold" />
-        </com.google.android.material.textfield.TextInputLayout>
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/inputLastNameLayoutRegister"
-            android:layout_width="match_parent"
-            android:layout_height="74dp"
-            android:textColorHint="#020202"
-            app:boxBackgroundColor="#00FFFFFF"
-            app:startIconDrawable="@drawable/ic_baseline_account_circle_24"
-            app:startIconTint="@color/black"
-            >
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/inputLastNameRegister"
-                android:layout_width="match_parent"
-                android:layout_height="55dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="20dp"
-                android:background="@drawable/custom_input"
-                android:drawableTint="@color/black"
-                android:fontFamily="@font/abeezee"
-                android:hint="Apellidos"
-                android:paddingStart="12dp"
-                android:textColor="#000000"
-                android:textColorHint="#000000"
-                android:textStyle="bold" />
-        </com.google.android.material.textfield.TextInputLayout>
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/inputEmailLayoutRegister"
-            android:layout_width="match_parent"
-            android:layout_height="74dp"
-            android:textColorHint="#020202"
-            app:boxBackgroundColor="#00FFFFFF"
-            app:startIconDrawable="@drawable/ic_baseline_email_24"
-            app:startIconTint="@color/black"
-            >
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/inputEmailRegister"
-                android:layout_width="match_parent"
-                android:layout_height="55dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="20dp"
-                android:background="@drawable/custom_input"
-                android:drawableTint="@color/black"
-                android:fontFamily="@font/abeezee"
-                android:hint="Correo"
-                android:paddingStart="12dp"
-                android:textColor="#000000"
-                android:textColorHint="#000000"
-                android:textStyle="bold" />
-        </com.google.android.material.textfield.TextInputLayout>
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/inputPasswordLayoutRegister"
-            android:layout_width="match_parent"
-            android:layout_height="74dp"
-            android:textColorHint="#020202"
-            app:boxBackgroundColor="#00FFFFFF"
-            app:startIconDrawable="@drawable/ic_baseline_key_24"
-            app:startIconTint="@color/black"
-            >
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/inputPasswordRegister"
-                android:layout_width="match_parent"
-                android:layout_height="55dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="20dp"
-                android:background="@drawable/custom_input"
-                android:drawableTint="@color/black"
-                android:fontFamily="@font/abeezee"
-                android:hint="Contraseña"
-                android:paddingStart="12dp"
-                android:textColor="#000000"
-                android:textColorHint="#000000"
-                android:textStyle="bold" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-
-
-
+        android:layout_height="500dp">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="68dp"
-            android:layout_marginStart="50dp"
-            android:layout_marginEnd="50dp"
-            android:textAlignment="center">
-            <Button
-                android:id="@+id/btnRegister"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="20dp"
-                android:paddingLeft="40dp"
-                android:paddingRight="40dp"
-                android:hint="Registrarse"
-                android:textColorHint="@color/white"
-                android:textStyle="bold"
-                android:fontFamily="@font/abeezee"
-                android:textColor="@color/white"
-                app:cornerRadius="20dp" />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="68dp"
-            android:layout_marginStart="50dp"
-            android:layout_marginEnd="50dp"
-            android:layout_marginTop="20dp"
-            android:textAlignment="center">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Ya tienes una cuenta?"
-                android:textStyle="bold"
-                android:fontFamily="@font/abeezee"
-                android:textColor="@color/black"
-                android:textAlignment="center"/>
-            <TextView
-                android:id="@+id/txtLogin"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="25dp"
-                android:text="Logueate"
-                android:textStyle="bold"
-                android:textColor="@color/orange"
-                android:fontFamily="@font/abeezee"
-                android:textAlignment="center"/>
-        </LinearLayout>
+            android:layout_height="wrap_content"
 
-    </LinearLayout>
+            android:background="@drawable/shape_login_panel"
+            android:layout_marginBottom="50dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical"
+            >
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/inputNameLayoutRegister"
+                android:layout_width="match_parent"
+                android:layout_height="74dp"
+                android:textColorHint="#020202"
+                app:boxBackgroundColor="#00FFFFFF"
+                app:startIconDrawable="@drawable/ic_baseline_account_circle_24"
+                app:startIconTint="@color/black"
+                >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/inputNameRegister"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:background="@drawable/custom_input"
+                    android:drawableTint="@color/black"
+                    android:fontFamily="@font/abeezee"
+                    android:hint="Nombres"
+                    android:paddingStart="12dp"
+                    android:textColor="#000000"
+                    android:textColorHint="#000000"
+                    android:textStyle="bold" />
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/inputLastNameLayoutRegister"
+                android:layout_width="match_parent"
+                android:layout_height="74dp"
+                android:textColorHint="#020202"
+                app:boxBackgroundColor="#00FFFFFF"
+                app:startIconDrawable="@drawable/ic_baseline_account_circle_24"
+                app:startIconTint="@color/black"
+                >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/inputLastNameRegister"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:background="@drawable/custom_input"
+                    android:drawableTint="@color/black"
+                    android:fontFamily="@font/abeezee"
+                    android:hint="Apellidos"
+                    android:paddingStart="12dp"
+                    android:textColor="#000000"
+                    android:textColorHint="#000000"
+                    android:textStyle="bold" />
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/inputEmailLayoutRegister"
+                android:layout_width="match_parent"
+                android:layout_height="74dp"
+                android:textColorHint="#020202"
+                app:boxBackgroundColor="#00FFFFFF"
+                app:startIconDrawable="@drawable/ic_baseline_email_24"
+                app:startIconTint="@color/black"
+                >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/inputEmailRegister"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:background="@drawable/custom_input"
+                    android:drawableTint="@color/black"
+                    android:fontFamily="@font/abeezee"
+                    android:hint="Correo"
+                    android:paddingStart="12dp"
+                    android:textColor="#000000"
+                    android:textColorHint="#000000"
+                    android:textStyle="bold" />
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/inputPasswordLayoutRegister"
+                android:layout_width="match_parent"
+                android:layout_height="74dp"
+                android:textColorHint="#020202"
+                app:boxBackgroundColor="#00FFFFFF"
+                app:startIconDrawable="@drawable/ic_baseline_key_24"
+                app:startIconTint="@color/black"
+                >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/inputPasswordRegister"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:background="@drawable/custom_input"
+                    android:drawableTint="@color/black"
+                    android:fontFamily="@font/abeezee"
+                    android:hint="Contraseña"
+                    android:paddingStart="12dp"
+                    android:textColor="#000000"
+                    android:textColorHint="#000000"
+                    android:textStyle="bold" />
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/inputPhoneLayoutRegister"
+                android:layout_width="match_parent"
+                android:layout_height="74dp"
+                android:textColorHint="#020202"
+                app:boxBackgroundColor="#00FFFFFF"
+                app:startIconDrawable="@drawable/ic_baseline_email_24"
+                app:startIconTint="@color/black"
+                >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/inputPhoneRegister"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:background="@drawable/custom_input"
+                    android:drawableTint="@color/black"
+                    android:fontFamily="@font/abeezee"
+                    android:hint="Telefono"
+                    android:paddingStart="12dp"
+                    android:textColor="#000000"
+                    android:textColorHint="#000000"
+                    android:textStyle="bold" />
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/inputAddressLayoutRegister"
+                android:layout_width="match_parent"
+                android:layout_height="74dp"
+                android:textColorHint="#020202"
+                app:boxBackgroundColor="#00FFFFFF"
+                app:startIconDrawable="@drawable/ic_baseline_email_24"
+                app:startIconTint="@color/black"
+                >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/inputAddressRegister"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:background="@drawable/custom_input"
+                    android:drawableTint="@color/black"
+                    android:fontFamily="@font/abeezee"
+                    android:hint="Dirección"
+                    android:paddingStart="12dp"
+                    android:textColor="#000000"
+                    android:textColorHint="#000000"
+                    android:textStyle="bold" />
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/inputDistrictayoutRegister"
+                android:layout_width="match_parent"
+                android:layout_height="74dp"
+                android:textColorHint="#020202"
+                app:boxBackgroundColor="#00FFFFFF"
+                app:startIconDrawable="@drawable/ic_baseline_email_24"
+                app:startIconTint="@color/black"
+                >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/inputDistrictRegister"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:background="@drawable/custom_input"
+                    android:drawableTint="@color/black"
+                    android:fontFamily="@font/abeezee"
+                    android:hint="Distrito"
+                    android:paddingStart="12dp"
+                    android:textColor="#000000"
+                    android:textColorHint="#000000"
+                    android:textStyle="bold" />
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/inputDateLayoutRegister"
+                android:layout_width="match_parent"
+                android:layout_height="74dp"
+                android:textColorHint="#020202"
+                app:boxBackgroundColor="#00FFFFFF"
+                app:startIconDrawable="@drawable/ic_baseline_email_24"
+                app:startIconTint="@color/black"
+                >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/inputDatetRegister"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:background="@drawable/custom_input"
+                    android:drawableTint="@color/black"
+                    android:fontFamily="@font/abeezee"
+                    android:hint="Distrito"
+                    android:paddingStart="12dp"
+                    android:textColor="#000000"
+                    android:textColorHint="#000000"
+                    android:textStyle="bold" />
+            </com.google.android.material.textfield.TextInputLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="68dp"
+                android:layout_marginStart="50dp"
+                android:layout_marginEnd="50dp"
+                android:textAlignment="center">
+                <Button
+                    android:id="@+id/btnRegister"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="20dp"
+                    android:paddingLeft="40dp"
+                    android:paddingRight="40dp"
+                    android:hint="Registrarse"
+                    android:textColorHint="@color/white"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/abeezee"
+                    android:textColor="@color/white"
+                    app:cornerRadius="20dp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="68dp"
+                android:layout_marginStart="50dp"
+                android:layout_marginEnd="50dp"
+                android:layout_marginTop="20dp"
+                android:textAlignment="center">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ya tienes una cuenta?"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/abeezee"
+                    android:textColor="@color/black"
+                    android:textAlignment="center"/>
+                <TextView
+                    android:id="@+id/txtLogin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="25dp"
+                    android:text="Logueate"
+                    android:textStyle="bold"
+                    android:textColor="@color/orange"
+                    android:fontFamily="@font/abeezee"
+                    android:textAlignment="center"/>
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+
+
 
 </LinearLayout>
