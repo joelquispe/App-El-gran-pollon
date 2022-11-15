@@ -21,7 +21,7 @@ class RestEngine {
             val ipsosaya = "http://192.168.18.45:8090/";
 
             //chipana
-            val ipchipana = "http://192.168.1.3:8090/";
+            val ipchipana = "http://192.168.1.4:8090/";
 
             //frank
             val ipfrank = ""
@@ -32,7 +32,7 @@ class RestEngine {
             val cookieManager: CookieManager = CookieManager();
             cookieManager.setCookiePolicy(CookiePolicy.ACCEPT_ALL);
             val cliente = OkHttpClient.Builder().cookieJar(JavaNetCookieJar(cookieManager)).followRedirects(false).addInterceptor(interceptor).build();
-            val retrofit = Retrofit.Builder().baseUrl(ipsosaya).addConverterFactory( GsonConverterFactory.create()).client(cliente).build();
+            val retrofit = Retrofit.Builder().baseUrl(ipchipana).addConverterFactory( GsonConverterFactory.create()).client(cliente).build();
 
             return retrofit;
         }
