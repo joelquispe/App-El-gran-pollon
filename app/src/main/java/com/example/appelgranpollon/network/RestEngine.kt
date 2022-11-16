@@ -1,5 +1,6 @@
 package com.example.appelgranpollon.network
 
+import android.os.StrictMode
 import com.example.appelgranpollon.Models.ClientData
 import com.google.gson.Gson
 import okhttp3.CookieJar
@@ -21,7 +22,7 @@ class RestEngine {
             val ipsosaya = "http://192.168.18.45:8090/";
 
             //chipana
-            val ipchipana = "http://192.168.1.3:8090/";
+            val ipchipana = "http://192.168.1.4:8090/";
 
             //frank
             val ipfrank = ""
@@ -31,6 +32,7 @@ class RestEngine {
 
             val cookieManager: CookieManager = CookieManager();
             cookieManager.setCookiePolicy(CookiePolicy.ACCEPT_ALL);
+            StrictMode.setThreadPolicy(StrictMode.ThreadPolicy.Builder().detectNetwork().penaltyDialog().permitNetwork().build())
             val cliente = OkHttpClient.Builder().cookieJar(JavaNetCookieJar(cookieManager)).followRedirects(false).addInterceptor(interceptor).build();
             val retrofit = Retrofit.Builder().baseUrl(ipsosaya).addConverterFactory( GsonConverterFactory.create()).client(cliente).build();
 

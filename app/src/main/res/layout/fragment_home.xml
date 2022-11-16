@@ -15,6 +15,7 @@
         tools:openDrawer="start"
 
         >
+
         <com.google.android.material.navigation.NavigationView
             android:id="@+id/navigationViewId"
             android:layout_width="match_parent"
@@ -24,6 +25,63 @@
 
             app:headerLayout="@layout/header_navigation_drawer"
             app:menu="@menu/navigation_drawer" />
+        <LinearLayout
+                android:orientation="vertical"
+                android:textAlignment="center"
+                android:layout_width="wrap_content" android:layout_height="wrap_content">
+            <TextView
+                    android:id="@+id/txtTile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="65dp"
+
+                    android:textStyle="bold"
+                    android:textSize="18dp"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/abeezee" />
+            <TextView
+                    android:id="@+id/txtRegister"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:text="Disfruta de los mejores platillos"
+                    android:textStyle="bold"
+                    android:textSize="18dp"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/abeezee" />
+        </LinearLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/inputSearchLayout"
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:textColorHint="#020202"
+            app:boxBackgroundColor="#00FFFFFF"
+            app:startIconDrawable="@drawable/ic_baseline_search_24"
+            app:startIconTint="@color/black"
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/inputSearch"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="90dp"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/custom_input"
+                android:drawableTint="@color/black"
+                android:fontFamily="@font/abeezee"
+                android:hint="Buscar platillo"
+                android:paddingStart="12dp"
+                android:textColor="#000000"
+                android:textColorHint="#000000"
+                android:textStyle="bold" />
+        </com.google.android.material.textfield.TextInputLayout>
+
         <RelativeLayout
             android:layout_width="match_parent"
 
@@ -40,11 +98,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center">
-<TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="home"
-    android:textColor="@color/purple_200"></TextView>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerViewPlates"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="115dp"
+                    android:padding="12dp"
+                    />
+
             </LinearLayout>
 
         </RelativeLayout>

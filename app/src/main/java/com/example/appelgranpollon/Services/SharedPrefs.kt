@@ -14,4 +14,7 @@ class SharedPrefs(val context:Context) {
     fun getUser():String{
         return storage.getString(SHARED_USER,"null")!!;
     }
+    fun removeUser(){
+        storage.edit().remove(SHARED_USER).commit();
+    }
 }
