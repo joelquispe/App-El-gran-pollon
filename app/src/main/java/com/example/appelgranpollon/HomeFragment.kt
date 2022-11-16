@@ -8,12 +8,14 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.Toolbar
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.ToolbarWidgetWrapper
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.Navigation
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
 
 
@@ -21,8 +23,7 @@ import com.google.android.material.navigation.NavigationView
 
 class  HomeFragment : Fragment()   ,NavigationView.OnNavigationItemSelectedListener {
     // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+
     lateinit var drawerLayout:DrawerLayout ;
     lateinit var views:View;
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,11 +37,16 @@ class  HomeFragment : Fragment()   ,NavigationView.OnNavigationItemSelectedListe
     ): View? {
         // Inflate the layout for this fragment
         views =  inflater.inflate(R.layout.fragment_home, container, false);
-
+        var btnCart:FloatingActionButton = views.findViewById<FloatingActionButton>(R.id.btnCart);
+        btnCart.setOnClickListener(){
+            navigate(views);
+        }
         initDrawer()
         return views;
     }
-
+    fun navigate(view: View){
+        Navigation.findNavController(view).navigate(R.id.shoppingCartFragment);
+    }
     fun initDrawer(){
         val navigationView:NavigationView = views.findViewById<NavigationView>(R.id.navigationViewId);
 
