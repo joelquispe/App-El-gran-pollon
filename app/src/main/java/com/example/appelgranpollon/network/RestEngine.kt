@@ -25,7 +25,7 @@ class RestEngine {
             val ipchipana = "http://192.168.1.4:8090/";
 
             //frank
-            val ipfrank = ""
+            val ipfrank = "http://192.168.18.69:8090/"
 
             val interceptor = HttpLoggingInterceptor();
             interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
@@ -34,7 +34,7 @@ class RestEngine {
             cookieManager.setCookiePolicy(CookiePolicy.ACCEPT_ALL);
             StrictMode.setThreadPolicy(StrictMode.ThreadPolicy.Builder().detectNetwork().penaltyDialog().permitNetwork().build())
             val cliente = OkHttpClient.Builder().cookieJar(JavaNetCookieJar(cookieManager)).followRedirects(false).addInterceptor(interceptor).build();
-            val retrofit = Retrofit.Builder().baseUrl(ipsosaya).addConverterFactory( GsonConverterFactory.create()).client(cliente).build();
+            val retrofit = Retrofit.Builder().baseUrl(ipfrank).addConverterFactory( GsonConverterFactory.create()).client(cliente).build();
 
             return retrofit;
         }

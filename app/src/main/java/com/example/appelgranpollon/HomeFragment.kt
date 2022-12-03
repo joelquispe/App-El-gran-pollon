@@ -126,7 +126,7 @@ class  HomeFragment : Fragment()   ,NavigationView.OnNavigationItemSelectedListe
         }finally{
         }
     }
-
+/*
     private fun setDataInList():ArrayList<PlateData>{
 
         var items:ArrayList<PlateData> = ArrayList()
@@ -139,9 +139,8 @@ class  HomeFragment : Fragment()   ,NavigationView.OnNavigationItemSelectedListe
 
 
         return items
-
     }
-
+*/
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
 
         when(item.itemId){

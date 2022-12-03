@@ -9,6 +9,11 @@ import android.view.ViewGroup
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.Navigation
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.appelgranpollon.Models.CategoryData
+import com.example.appelgranpollon.adapters.CategoryAdapter
 import com.google.android.material.navigation.NavigationView
 
 
@@ -16,6 +21,10 @@ class CategoryFragment : Fragment() ,NavigationView.OnNavigationItemSelectedList
 
     lateinit var drawerLayout:DrawerLayout ;
     lateinit var views:View;
+    private var recyclerView: RecyclerView?= null
+    private var gridLayoutManager: GridLayoutManager?= null
+    private var arrayList:ArrayList<CategoryData> ?= null
+    private var plateAdapter:CategoryAdapter ?=null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,6 +38,15 @@ class CategoryFragment : Fragment() ,NavigationView.OnNavigationItemSelectedList
         // Inflate the layout for this fragment
         views = inflater.inflate(R.layout.fragment_category, container, false)
         initDrawer()
+
+        recyclerView = views.findViewById(R.id.RecyclerCategory)
+        gridLayoutManager = GridLayoutManager(views.context,1, LinearLayoutManager.VERTICAL,false)
+        recyclerView?.layoutManager = gridLayoutManager
+        arrayList = ArrayList()
+        arrayList = setDataInList()
+        plateAdapter = CategoryAdapter(views.context,arrayList!!)
+        recyclerView?.adapter = plateAdapter
+
         return views;
     }
     fun initDrawer(){
@@ -54,10 +72,23 @@ class CategoryFragment : Fragment() ,NavigationView.OnNavigationItemSelectedList
             else ->{
                 print("joel")
             }
-
         }
         return  false;
     }
+    private fun setDataInList():ArrayList<CategoryData>{
+
+        var items:ArrayList<CategoryData> = ArrayList()
+        items.add(CategoryData(1,"Parrilla",R.drawable.parrilla))
+        items.add(CategoryData(2,"Espagueti",R.drawable.espagueti))
+        items.add(CategoryData(3,"Carnes",R.drawable.carnes1))
+        items.add(CategoryData(4,"Caldos",R.drawable.caldos))
+        items.add(CategoryData(5,"A la Brasa",R.drawable.brasa))
+        //items.add(PlateData("Parrilla Mediana",R.drawable.parrillas,"S/30" ))
+        //items.add(PlateData("Choripapa Especial",R.drawable.choripapas,"S/24" ))
+        //items.add(PlateData("Parrilla Familiar",R.drawable.parrillas,"S/60" ))
 
 
-}
+        return items
+
+
+}}
