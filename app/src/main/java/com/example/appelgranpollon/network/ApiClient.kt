@@ -1,5 +1,6 @@
 package com.example.appelgranpollon.network
 
+import com.example.appelgranpollon.Models.CategoryData
 import com.example.appelgranpollon.Models.ClientData
 import com.example.appelgranpollon.Models.MotorizedData
 import com.example.appelgranpollon.Models.PlateData
@@ -32,5 +33,9 @@ interface ApiClient {
 
     @GET("api/plates/listar")
     fun findAllProducts():Call<List<PlateData>>;
+
+    @GET("api/category/listar")
+    fun findAllCategories():Call<List<CategoryData>>;
+
 
 }
