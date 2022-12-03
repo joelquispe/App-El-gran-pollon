@@ -88,17 +88,32 @@
                 android:textColorHint="#000000"
                 android:textStyle="bold" />
         </com.google.android.material.textfield.TextInputLayout>
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="horizontal" android:showDividers="middle"
+                      android:layout_marginStart="20dp"
+                      android:gravity="center"
+                      android:layout_gravity="center"
+                      
+                      android:layout_marginEnd="5dp"
+        > <com.google.android.material.switchmaterial.SwitchMaterial
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:textColor="@color/orange"
+                android:id="@+id/typeUser"
+                android:text="Motorizado"/>
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:text="¿Olvidaste tu contraseña?"
+                    android:textStyle="bold"
+                    android:textColor="@color/orange"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="30dp"
+                    android:fontFamily="@font/abeezee" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="right"
-            android:text="¿Olvidaste tu contraseña?"
-            android:textStyle="bold"
-            android:textColor="@color/orange"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="30dp"
-            android:fontFamily="@font/abeezee" />
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"

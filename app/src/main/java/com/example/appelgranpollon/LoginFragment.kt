@@ -15,15 +15,19 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import com.example.appelgranpollon.Models.ClientData
+import com.example.appelgranpollon.Models.MotorizedData
 import com.example.appelgranpollon.Models.PlateData
 import com.example.appelgranpollon.Services.SharedPrefs
+import com.example.appelgranpollon.enums.TypeUser
 import com.example.appelgranpollon.network.ApiClient
 import com.example.appelgranpollon.network.RestEngine
+import com.google.android.material.switchmaterial.SwitchMaterial
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.google.gson.Gson
 import retrofit2.Call
 import retrofit2.Callback
+import java.lang.reflect.Type
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -40,6 +44,7 @@ class LoginFragment : Fragment() {
 
     private lateinit var viewOfLayout: View
     lateinit var navController:NavController;
+
     var isEmailValidate =false;
     var isPasswordValidate=false;
 
@@ -54,41 +59,30 @@ class LoginFragment : Fragment() {
         // Inflate the layout for this fragment
         viewOfLayout =inflater.inflate(R.layout.fragment_login, container, false)
 
+        val isMotorized = viewOfLayout.findViewById<SwitchMaterial>(R.id.typeUser);
+
         val boton:Button = viewOfLayout.findViewById<Button>(R.id.btnLogin);
         val inputEmail = viewOfLayout.findViewById<TextInputEditText>(R.id.inputEmail);
         val inputPassword = viewOfLayout.findViewById<TextInputEditText>(R.id.inputPassword);
         val txtRegister = viewOfLayout.findViewById<TextView>(R.id.txtRegister);
         boton.setOnClickListener (){
+            var typeUser = if(isMotorized.isChecked){
+                TypeUser.Motorized.name;
+            }else{
+                TypeUser.Customer.name;
+            }
             lateinit var client:ClientData;
             validateEmpty(inputEmail.text.toString(),inputPassword.text.toString(),viewOfLayout);
             if(isEmailValidate && isPasswordValidate){
-                val call= RestEngine.getRestEngine().create(ApiClient::class.java).verifyClient(inputEmail.text.toString(),inputPassword.text.toString());
-                call.enqueue(object : Callback<ClientData>{
-                    override fun onFailure(call: Call<ClientData>, t: Throwable) {
-                        Log.d("LOGGING",t.message.toString())
-                    }
+                Log.d("LOGGING",typeUser)
+                if(typeUser == TypeUser.Customer.name){
+                    loginCustomer(typeUser,inputEmail,inputPassword);
+                }else if(typeUser == TypeUser.Motorized.name){
+                    loginMotorized(typeUser,inputEmail,inputPassword);
+                }else{
 
-                    override fun onResponse(
-                        call: Call<ClientData>?,
-                        response: retrofit2.Response<ClientData>
-                    ) {
-                        try {
-                            client = Gson().getAdapter(ClientData::class.java).fromJson(response.errorBody()
-                                ?.string());
+                }
 
-                            Log.d("LOGGING",client.name)
-                            if(inputEmail.text.toString() == client.email && inputPassword.text.toString() == client.password){
-                                //navegacion entre pantallas
-                                navController.navigate(R.id.homeFragment)
-
-                                SharedPrefs(viewOfLayout.context).saveUser(Gson().toJson(client));
-                            }
-                        }catch (e:Exception) {
-                            Toast.makeText(context,"Usuario Invalido",Toast.LENGTH_SHORT).show();
-                        }
-
-                    }
-                })
             }
 
         }
@@ -110,7 +104,64 @@ class LoginFragment : Fragment() {
         }
 
     }
+    fun loginCustomer(typeUser:String,inputEmail:TextInputEditText,inputPassword: TextInputEditText){
+        val call= RestEngine.getRestEngine().create(ApiClient::class.java).verifyClient(inputEmail.text.toString(),inputPassword.text.toString());
+        call.enqueue(object : Callback<ClientData>{
+            override fun onFailure(call: Call<ClientData>, t: Throwable) {
+                Log.d("LOGGING",t.message.toString())
+            }
 
+            override fun onResponse(
+                call: Call<ClientData>?,
+                response: retrofit2.Response<ClientData>
+            ) {
+                try {
+                    val client = Gson().getAdapter(ClientData::class.java).fromJson(response.errorBody()
+                        ?.string());
+
+                    Log.d("LOGGING",client.name)
+                    if(inputEmail.text.toString() == client.email && inputPassword.text.toString() == client.password){
+                        //navegacion entre pantallas
+                        navController.navigate(R.id.homeFragment)
+                        SharedPrefs(viewOfLayout.context).saveTypeUser(typeUser);
+                        SharedPrefs(viewOfLayout.context).saveUser(Gson().toJson(client));
+                    }
+                }catch (e:Exception) {
+                    Toast.makeText(context,"Usuario Invalido",Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        })
+    }
+    fun loginMotorized(typeUser:String,inputEmail:TextInputEditText,inputPassword: TextInputEditText){
+        val call= RestEngine.getRestEngine().create(ApiClient::class.java).verifyMotorized(inputEmail.text.toString(),inputPassword.text.toString());
+        call.enqueue(object : Callback<MotorizedData>{
+            override fun onFailure(call: Call<MotorizedData>, t: Throwable) {
+                Log.d("LOGGING",t.message.toString())
+            }
+
+            override fun onResponse(
+                call: Call<MotorizedData>?,
+                response: retrofit2.Response<MotorizedData>
+            ) {
+                try {
+                    val motorized = Gson().getAdapter(MotorizedData::class.java).fromJson(response.errorBody()
+                        ?.string());
+
+                    Log.d("LOGGING",motorized.name)
+                    if(inputEmail.text.toString() == motorized.email && inputPassword.text.toString() == motorized.password){
+                        //navegacion entre pantallas
+                        navController.navigate(R.id.motorizedFragment)
+                        SharedPrefs(viewOfLayout.context).saveTypeUser(typeUser);
+                        SharedPrefs(viewOfLayout.context).saveUser(Gson().toJson(motorized));
+                    }
+                }catch (e:Exception) {
+                    Toast.makeText(context,"Usuario Invalido",Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        })
+    }
     private fun validateEmpty(email:String, password:String, view: View){
         val inputEmailLayout = view.findViewById<TextInputLayout>(R.id.inputEmailLayout);
         val inputPasswordLayout = view.findViewById<TextInputLayout>(R.id.inputPasswordLayout);

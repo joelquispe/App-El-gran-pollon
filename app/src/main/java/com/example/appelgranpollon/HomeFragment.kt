@@ -157,6 +157,7 @@ class  HomeFragment : Fragment()   ,NavigationView.OnNavigationItemSelectedListe
     }
     fun logout(){
         SharedPrefs(this.views.context).removeUser();
+        SharedPrefs(this.views.context).removeTypeUser();
         Navigation.findNavController(views).navigate(R.id.loginFragment);
     }
 

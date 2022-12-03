@@ -163,86 +163,39 @@
                     android:paddingStart="12dp"
                     android:textColor="#000000"
                     android:textColorHint="#000000"
+
                     android:textStyle="bold" />
             </com.google.android.material.textfield.TextInputLayout>
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/inputAddressLayoutRegister"
+                android:id="@+id/inputDateOfbirthLayoutRegister"
                 android:layout_width="match_parent"
                 android:layout_height="74dp"
                 android:textColorHint="#020202"
                 app:boxBackgroundColor="#00FFFFFF"
                 app:startIconDrawable="@drawable/ic_baseline_email_24"
                 app:startIconTint="@color/black"
+                app:helperTextEnabled="true"
+                app:helperText="dd/mm/yyyy"
                 >
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/inputAddressRegister"
+                    android:id="@+id/inputDateOfbirthRegister"
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="20dp"
                     android:layout_marginEnd="20dp"
-                    android:background="@drawable/custom_input"
-                    android:drawableTint="@color/black"
-                    android:fontFamily="@font/abeezee"
-                    android:hint="Dirección"
-                    android:paddingStart="12dp"
-                    android:textColor="#000000"
-                    android:textColorHint="#000000"
-                    android:textStyle="bold" />
-            </com.google.android.material.textfield.TextInputLayout>
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/inputDistrictayoutRegister"
-                android:layout_width="match_parent"
-                android:layout_height="74dp"
-                android:textColorHint="#020202"
-                app:boxBackgroundColor="#00FFFFFF"
-                app:startIconDrawable="@drawable/ic_baseline_email_24"
-                app:startIconTint="@color/black"
-                >
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/inputDistrictRegister"
-                    android:layout_width="match_parent"
-                    android:layout_height="55dp"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginEnd="20dp"
                     android:background="@drawable/custom_input"
                     android:drawableTint="@color/black"
                     android:fontFamily="@font/abeezee"
-                    android:hint="Distrito"
+                    android:hint="Fecha de nacimiento"
                     android:paddingStart="12dp"
                     android:textColor="#000000"
                     android:textColorHint="#000000"
                     android:textStyle="bold" />
             </com.google.android.material.textfield.TextInputLayout>
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/inputDateLayoutRegister"
-                android:layout_width="match_parent"
-                android:layout_height="74dp"
-                android:textColorHint="#020202"
-                app:boxBackgroundColor="#00FFFFFF"
-                app:startIconDrawable="@drawable/ic_baseline_email_24"
-                app:startIconTint="@color/black"
-                >
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/inputDatetRegister"
-                    android:layout_width="match_parent"
-                    android:layout_height="55dp"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginEnd="20dp"
-                    android:background="@drawable/custom_input"
-                    android:drawableTint="@color/black"
-                    android:fontFamily="@font/abeezee"
-                    android:hint="Distrito"
-                    android:paddingStart="12dp"
-                    android:textColor="#000000"
-                    android:textColorHint="#000000"
-                    android:textStyle="bold" />
-            </com.google.android.material.textfield.TextInputLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="68dp"

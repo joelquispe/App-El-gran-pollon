@@ -1,8 +1,10 @@
 package com.example.appelgranpollon.network
 
 import com.example.appelgranpollon.Models.ClientData
+import com.example.appelgranpollon.Models.MotorizedData
 import com.example.appelgranpollon.Models.PlateData
 import retrofit2.Call
+import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Headers
 import retrofit2.http.POST
@@ -15,8 +17,12 @@ interface ApiClient {
     @POST("api/cliente/buscar")
     fun verifyClient(@Query("email") email:String,@Query("password") password:String):Call<ClientData>;
 
+    @POST("api/motorized/buscar")
+    fun verifyMotorized(@Query("email") email:String,@Query("password") password:String):Call<MotorizedData>;
+
+    @Headers("Content-Type: application/json")
     @POST("api/cliente/registrar")
-    fun registerClient(@Query("email") email:String,@Query("password") password:String):Call<ClientData>;
+    fun registerClient(@Body customer:ClientData):Call<ClientData>;
 
     @GET("api/cliente/listar")
     fun getClients():Call<List<ClientData>>;
