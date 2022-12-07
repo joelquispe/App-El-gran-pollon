@@ -1,14 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             tools:context=".MethodPayFragment">
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MethodPayFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+    <TableLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="@string/hello_blank_fragment"/>
+            android:layout_marginTop="25dp">
+
+        <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="start">
+
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="20dp"
+                    android:text="Metodos de pagos"
+                    android:textStyle="normal"
+                    android:textSize="30dp"
+                    android:textColor="@color/white"/>
+
+        </TableRow>
+        <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="start">
+
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="20dp"
+                    android:text="Tarjetas"
+                    android:textStyle="normal"
+                    android:textSize="30dp"
+                    android:textColor="@color/white"/>
+
+        </TableRow>
+
+        <Button
+                android:layout_width="50dp"
+                android:layout_height="60dp"
+                android:drawableLeft="@drawable/ic_baseline_credit_card_24"
+                android:backgroundTint="@color/gray"
+                android:layout_marginStart="25dp"
+                android:layout_marginEnd="50dp"
+                android:text="1234 #### #### ####"
+                android:textStyle="normal"
+                android:textSize="20dp"
+                android:textColor="@color/white"/>
+
+        <Button
+                android:layout_width="50dp"
+                android:layout_height="60dp"
+                android:drawableLeft="@drawable/ic_baseline_credit_card_24"
+                android:backgroundTint="@color/gray"
+                android:layout_marginStart="25dp"
+                android:layout_marginEnd="50dp"
+                android:text="1234 #### #### ####"
+                android:textStyle="normal"
+                android:textSize="20dp"
+                android:textColor="@color/white"/>
+
+
+        <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="start">
+
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="20dp"
+                    android:text="Contra entrega"
+                    android:textStyle="normal"
+                    android:textSize="30dp"
+                    android:textColor="@color/white"/>
+
+        </TableRow>
+
+        <Button
+                android:layout_width="50dp"
+                android:layout_height="60dp"
+                android:drawableLeft="@drawable/ic_baseline_attach_money_24"
+                android:backgroundTint="@color/gray"
+                android:layout_marginStart="25dp"
+                android:layout_marginEnd="50dp"
+                android:text="Efectivo"
+                android:textStyle="normal"
+                android:textSize="18dp"
+                android:textColor="@color/white"/>
+
+    </TableLayout>
+
 
 </FrameLayout>
