@@ -1,114 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ShoppingCartFragment">
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ShoppingCartFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/white"
-        android:orientation="vertical">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/gray_2"
+            android:orientation="vertical">
 
         <ImageButton
-            android:id="@+id/imageButton"
-            android:layout_width="74dp"
-            android:layout_height="51dp"
-            android:background="#FFFFFF"
-            android:foregroundGravity="left"
-            android:src="@drawable/ic_baseline_arrow_back_ios_24"
-            android:textAlignment="viewStart" />
+                android:id="@+id/imageButton"
+                android:layout_width="74dp"
+                android:layout_height="51dp"
+                android:background="@color/black"
+                android:foregroundGravity="left"
+                android:src="@drawable/ic_baseline_arrow_back_ios_24"
+                android:textAlignment="viewStart" />
 
         <ListView
-            android:layout_width="match_parent"
-            android:layout_height="619dp"
-            android:background="#CA3030">
+                android:layout_width="match_parent"
+                android:layout_height="375dp"
+                tools:listitem="@layout/card_order_detail">
 
         </ListView>
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="162dp"
-
-            android:orientation="vertical">
+                android:layout_width="match_parent"
+                android:layout_height="162dp"
+                android:layout_marginTop="25dp"
+                android:orientation="vertical">
 
             <TableLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp">
 
                 <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
 
                     <TextView
-                        android:id="@+id/textView11"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Sub Total :"
-                        android:textColor="#000000"
-                        android:textSize="20sp" />
+                            android:id="@+id/textView11"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Sub Total :"
+                            android:textColor="@color/white"
+                            android:textSize="20sp" />
 
                     <TextView
-                        android:id="@+id/textView17"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="S/20.00"
-                        android:textColor="#000000"
-                        android:textSize="20sp" />
+                            android:id="@+id/textView17"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="S/20.00"
+                            android:textColor="@color/white"
+                            android:textSize="20sp" />
 
                 </TableRow>
 
                 <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="20dp">
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="20dp">
 
                     <TextView
-                        android:id="@+id/textView15"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Delivery :"
-                        android:textColor="#000000"
-                        android:textSize="20sp" />
+                            android:id="@+id/textView15"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Delivery :"
+                            android:textColor="@color/white"
+                            android:textSize="20sp" />
 
                     <TextView
-                        android:id="@+id/textView13"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="S/20.00"
-                        android:textColor="#000000"
-                        android:textSize="20sp" />
+                            android:id="@+id/textView13"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="S/20.00"
+                            android:textColor="@color/white"
+                            android:textSize="20sp" />
                 </TableRow>
 
                 <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="20dp">
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="20dp">
 
                     <TextView
-                        android:id="@+id/textView19"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Total :"
-                        android:textColor="#000000"
-                        android:textSize="20sp" />
+                            android:id="@+id/textView19"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Total :"
+                            android:textColor="@color/white"
+                            android:textSize="20sp" />
 
                     <TextView
-                        android:id="@+id/textView18"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="S/30.00"
-                        android:textColor="#000000"
-                        android:textSize="20sp" />
+                            android:id="@+id/textView18"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="S/30.00"
+                            android:textColor="@color/white"
+                            android:textSize="20sp" />
                 </TableRow>
 
             </TableLayout>
@@ -116,12 +118,12 @@
         </LinearLayout>
 
         <Button
-            android:id="@+id/button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="25dp"
-            android:layout_marginRight="25dp"
-            android:text="Button" />
+                android:id="@+id/button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:text="Continuar" />
 
     </LinearLayout>
 

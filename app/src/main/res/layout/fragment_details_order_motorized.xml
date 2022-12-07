@@ -1,14 +1,154 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             tools:context=".DetailsOrderMotorizedFragment">
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".DetailsOrderMotorizedFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+    <TableLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="@string/hello_blank_fragment"/>
+            android:layout_marginTop="25dp">
+
+        <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="start">
+
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="20dp"
+                    android:text=""
+                    android:textStyle="normal"
+                    android:textSize="30dp"
+                    android:textColor="@color/white"/>
+
+        </TableRow>
+
+        <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center_horizontal"
+                >
+
+            <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerViewOrders"
+                    android:layout_width="match_parent"
+                    android:layout_height="315dp"
+                    tools:listitem="@layout/card_order_detail"
+                    android:padding="12dp"
+                    />
+
+        </TableRow>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:text="Usuario:"
+                        android:textStyle="normal"
+                        android:textSize="18dp"
+                        android:textColor="@color/white"/>
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:text="Jose Jimenez"
+                        android:textStyle="normal"
+                        android:textSize="18dp"
+                        android:textColor="@color/white"/>
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:text="Distrito:"
+                        android:textStyle="normal"
+                        android:textSize="18dp"
+                        android:textColor="@color/white"/>
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:text="Magdalena del Mar"
+                        android:textStyle="normal"
+                        android:textSize="18dp"
+                        android:textColor="@color/white"/>
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:text="Direccion:"
+                        android:textStyle="normal"
+                        android:textSize="18dp"
+                        android:textColor="@color/white"/>
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:text="Jr. Tacna 1590"
+                        android:textStyle="normal"
+                        android:textSize="18dp"
+                        android:textColor="@color/white"/>
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:text="Metodo de pago :"
+                        android:textStyle="normal"
+                        android:textSize="18dp"
+                        android:textColor="@color/white"/>
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:text="Efectivo"
+                        android:textStyle="normal"
+                        android:textSize="18dp"
+                        android:textColor="@color/white"/>
+
+                <TextView
+                        android:id="@+id/espacioXD"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:text=""
+                        android:textStyle="normal"
+                        android:textSize="18dp"
+                        android:textColor="@color/white"/>
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:text="Total : S/ 100.00"
+                        android:textStyle="normal"
+                        android:textSize="18dp"
+                        android:textColor="@color/white"/>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </TableLayout>
 
 </FrameLayout>
