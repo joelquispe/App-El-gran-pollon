@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".fragment_pago_Realizao">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <TextView
+            android:layout_marginTop="200dp"
+            android:layout_marginLeft="50dp"
+            android:layout_width="300dp"
+            android:layout_height="100dp"
+            android:text="Compra Realizada Con Exito"
+            android:textSize="35dp"
+            android:textStyle="italic"
+            android:textAlignment="center"
+            />
+    <ImageView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginLeft="125dp"
+            app:srcCompat="@drawable/comprobado"
+            android:layout_marginTop="300dp"/>
+
+</FrameLayout>
