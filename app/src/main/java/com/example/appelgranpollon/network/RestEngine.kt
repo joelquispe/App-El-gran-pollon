@@ -34,7 +34,7 @@ class RestEngine {
             StrictMode.setThreadPolicy(StrictMode.ThreadPolicy.Builder().detectNetwork().penaltyDialog().permitNetwork().build())
             val cliente = OkHttpClient.Builder().cookieJar(JavaNetCookieJar(cookieManager)).followRedirects(false).addInterceptor(interceptor).build();
 
-            val retrofit = Retrofit.Builder().baseUrl(ipchipana).addConverterFactory( GsonConverterFactory.create(gson)).client(cliente).build();
+            val retrofit = Retrofit.Builder().baseUrl(ipsosaya).addConverterFactory( GsonConverterFactory.create(gson)).client(cliente).build();
 
 
             return retrofit;

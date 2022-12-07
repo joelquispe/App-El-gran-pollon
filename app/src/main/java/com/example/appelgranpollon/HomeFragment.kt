@@ -19,6 +19,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.ToolbarWidgetWrapper
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.navigation.NavController
 import androidx.navigation.Navigation
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -56,7 +57,7 @@ class  HomeFragment : Fragment()   ,NavigationView.OnNavigationItemSelectedListe
     private var arrayList:ArrayList<PlateData> ?= null
     private var plateAdapter:PlateAdapter ?=null
     lateinit var allProducts:ArrayList<PlateData> ;
-
+    lateinit var navController: NavController;
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -160,4 +161,8 @@ class  HomeFragment : Fragment()   ,NavigationView.OnNavigationItemSelectedListe
         Navigation.findNavController(views).navigate(R.id.loginFragment);
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        navController = Navigation.findNavController(views)
+    }
 }
