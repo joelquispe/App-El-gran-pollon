@@ -1,14 +1,12 @@
 package com.example.appelgranpollon.network
 
-import com.example.appelgranpollon.Models.CategoryData
-import com.example.appelgranpollon.Models.ClientData
-import com.example.appelgranpollon.Models.MotorizedData
-import com.example.appelgranpollon.Models.PlateData
+import com.example.appelgranpollon.Models.*
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Headers
 import retrofit2.http.POST
+import retrofit2.http.PUT
 import retrofit2.http.Path
 import retrofit2.http.Query
 
@@ -37,5 +35,14 @@ interface ApiClient {
     @GET("api/category/listar")
     fun findAllCategories():Call<List<CategoryData>>;
 
+    //cart
+    @Headers("Content-Type: application/json")
+    @POST("api/cart/registrar")
+    fun createCart(@Body cart:CartData):Call<CartData>;
 
+    @POST("api/cartItem/registrar")
+    fun addItem(@Body cart:CartITemData):Call<CartITemData>;
+
+    @PUT("api/cartItem/editar/quantity/{id}")
+    fun editQuantityItem(@Path("id") id:Int,@Body cart:CartITemData):Call<CartITemData>;
 }

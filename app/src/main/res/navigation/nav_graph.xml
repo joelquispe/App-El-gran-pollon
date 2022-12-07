@@ -16,6 +16,8 @@
         <action
             android:id="@+id/action_loginFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+        <action android:id="@+id/action_loginFragment_to_motorizedHomeFragment"
+                app:destination="@id/motorizedHomeFragment"/>
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
@@ -97,4 +99,13 @@
             android:id="@+id/action_splashFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
     </fragment>
+    <fragment android:id="@+id/fragment_Agregar_Direccion"
+              android:name="com.example.appelgranpollon.Fragment_Agregar_Direccion"
+              android:label="fragment__agregar__direccion" tools:layout="@layout/fragment__agregar__direccion"/>
+    <fragment android:id="@+id/addressFragment" android:name="com.example.appelgranpollon.addressFragment"
+              android:label="fragment_address" tools:layout="@layout/fragment_address"/>
+    <fragment android:id="@+id/ordersFragment" android:name="com.example.appelgranpollon.OrdersFragment"
+              android:label="fragment_orders" tools:layout="@layout/fragment_orders"/>
+    <fragment android:id="@+id/motorizedHomeFragment" android:name="com.example.appelgranpollon.MotorizedHomeFragment"
+              android:label="fragment_motorized_home" tools:layout="@layout/fragment_motorized_home"/>
 </navigation>
