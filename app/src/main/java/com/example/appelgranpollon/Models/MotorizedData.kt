@@ -11,6 +11,6 @@ data class MotorizedData(
     val placa:String="",
     val soat:String="",
     val dni:String="",
-    val motorized_status_id:Int?,
+    val motorizedStatus:MotorizedStatusData?,
 
 )

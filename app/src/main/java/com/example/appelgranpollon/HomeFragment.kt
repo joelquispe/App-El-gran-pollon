@@ -1,6 +1,9 @@
 package com.example.appelgranpollon
 
+import android.annotation.SuppressLint
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.Gravity
 import androidx.fragment.app.Fragment
@@ -8,7 +11,7 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-
+import android.view.KeyEvent;
 import android.widget.Button
 
 import android.widget.LinearLayout
@@ -36,6 +39,7 @@ import com.example.appelgranpollon.network.ApiClient
 import com.example.appelgranpollon.network.RestEngine
 
 import com.google.android.material.navigation.NavigationView
+import com.google.android.material.textfield.TextInputEditText
 import com.google.gson.Gson
 import retrofit2.Call
 import retrofit2.Callback
@@ -47,7 +51,7 @@ import java.util.Arrays
 class  HomeFragment : Fragment()   ,NavigationView.OnNavigationItemSelectedListener {
     // TODO: Rename and change types of parameters
 
-
+    lateinit var inputSearch:TextInputEditText ;
     lateinit var drawerLayout:DrawerLayout ;
     lateinit var views:View;
     lateinit var name:TextView;
@@ -57,6 +61,7 @@ class  HomeFragment : Fragment()   ,NavigationView.OnNavigationItemSelectedListe
     private var arrayList:ArrayList<PlateData> ?= null
     private var plateAdapter:PlateAdapter ?=null
     lateinit var allProducts:ArrayList<PlateData> ;
+    lateinit var  filterProducts:ArrayList<PlateData>;
     lateinit var navController: NavController;
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -71,7 +76,34 @@ class  HomeFragment : Fragment()   ,NavigationView.OnNavigationItemSelectedListe
         views =  inflater.inflate(R.layout.fragment_home, container, false);
         getProducts()
         var texto = getString(R.string.nameUser);
+        inputSearch = views.findViewById<TextInputEditText>(R.id.inputSearch);
+        filterProducts = ArrayList();
+        inputSearch.addTextChangedListener(object:TextWatcher{
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
 
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+
+            }
+
+            @SuppressLint("NotifyDataSetChanged")
+            override fun afterTextChanged(s: Editable?) {
+                filterProducts.clear()
+                Log.d("LOGGING",allProducts.toString())
+                for(p in allProducts){
+                    Log.d("LOGGING",p.name.compareTo(s.toString()).toString())
+                    if(p.category.name == s.toString() || p.name.compareTo(s.toString())>=0){
+                        filterProducts.add(p)
+                        plateAdapter!!.notifyDataSetChanged()
+                        Log.d("LOGGING",p.toString())
+                    }
+                }
+                plateAdapter!!.notifyDataSetChanged()
+
+            }
+
+        })
         var btnCart:FloatingActionButton = views.findViewById<FloatingActionButton>(R.id.btnCart);
         btnCart.setOnClickListener(){
             navigate(views);
@@ -82,7 +114,8 @@ class  HomeFragment : Fragment()   ,NavigationView.OnNavigationItemSelectedListe
         recyclerView?.layoutManager = gridLayoutManager
         arrayList = ArrayList()
         arrayList = allProducts
-        plateAdapter = PlateAdapter(views.context,arrayList!!)
+        filterProducts = allProducts.clone() as ArrayList<PlateData>
+        plateAdapter = PlateAdapter(views.context,filterProducts)
         recyclerView?.adapter = plateAdapter
         name = views.findViewById(R.id.txtTile)
         getUser(views)
@@ -118,7 +151,7 @@ class  HomeFragment : Fragment()   ,NavigationView.OnNavigationItemSelectedListe
         try{
             val call =  RestEngine.getRestEngine().create(ApiClient::class.java).findAllProducts();
             val response = call.execute();
-            Log.d("LOGGING","asd"+response.toString());
+
             var products:List<PlateData>?  = response.body();
             if (products != null) {
                 allProducts = products as ArrayList<PlateData>;
