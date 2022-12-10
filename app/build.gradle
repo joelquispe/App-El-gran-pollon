@@ -1,7 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
-
+    id 'com.google.gms.google-services'
 }
 
 android {
@@ -41,7 +41,7 @@ dependencies {
     implementation 'com.google.android.gms:play-services-maps:18.1.0'
     def nav_version = "2.5.1"
     implementation 'com.google.gms:google-services:4.3.14'
-    implementation platform('com.google.firebase:firebase-bom:31.0.1')
+    implementation platform('com.google.firebase:firebase-bom:31.1.1')
     implementation 'com.google.firebase:firebase-analytics-ktx'
     implementation 'com.google.android.material:material:1.6.1'
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
@@ -70,6 +70,7 @@ dependencies {
     implementation "com.squareup.okhttp3:logging-interceptor:4.6.0"
     implementation "com.squareup.okhttp3:okhttp-urlconnection:4.6.0"
     implementation 'com.squareup.picasso:picasso:2.5.2'
+    implementation 'com.google.firebase:firebase-messaging-ktx:23.1.1'
 
 
 }

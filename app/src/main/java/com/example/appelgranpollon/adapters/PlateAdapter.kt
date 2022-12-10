@@ -2,6 +2,7 @@ package com.example.appelgranpollon.adapters
 
 import android.content.Context
 import android.net.Uri
+import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,7 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appelgranpollon.Models.CartData
 import com.example.appelgranpollon.Models.CartITemData
@@ -19,6 +21,8 @@ import com.example.appelgranpollon.R
 import com.example.appelgranpollon.Services.SharedPrefs
 import com.example.appelgranpollon.network.ApiClient
 import com.example.appelgranpollon.network.RestEngine
+import com.google.android.gms.common.api.Api
+import com.google.android.material.card.MaterialCardView
 import com.google.gson.Gson
 import com.squareup.picasso.Picasso
 import retrofit2.Call
@@ -32,13 +36,22 @@ class PlateAdapter(var context: Context, var arrayList: ArrayList<PlateData>):
 
         val itemHolder = LayoutInflater.from(parent.context)
             .inflate(R.layout.card_plate,parent,false)
+        itemHolder.findViewById<MaterialCardView>(R.id.item_plate).setOnClickListener {
+            var product:PlateData = arrayList.get(getClickedPosition(itemHolder));
+            Log.d("LOGGING","CACACA")
+            val bundleDetails:Bundle = Bundle();
+            bundleDetails.putString("product",Gson().toJson(product))
+            Navigation.findNavController(itemHolder).navigate(R.id.detailsPlateFragment,bundleDetails);
+        }
         itemHolder.findViewById<Button>(R.id.btnAdd).setOnClickListener {
 
-            val product:PlateData = arrayList.get(viewType);
+            var product:PlateData = arrayList.get(getClickedPosition(itemHolder));
             Log.d("LOGGING",product.toString());
-
+            val client:ClientData = Gson().fromJson(SharedPrefs(itemHolder.context).getUser(),ClientData::class.java);
+            val cartData:CartData = CartData(total = "0.00", isInOrder = false, cliente =ClientData(id = client.id) )
+            addItemToCart(cartData);
             val cartt:CartData = CartData(id = 3)
-//            val client:ClientData = Gson().fromJson(SharedPrefs(parent.context).getUser(),ClientData::class.java) ;
+//
 //            var cartItem:CartITemData = CartITemData(quantity = "1", product = product, cart = cartt  );
 //            Log.d("LOGGING",cartItem.toString());
 //            val call = RestEngine.getRestEngine().create(ApiClient::class.java).addItem(cartItem);
@@ -52,18 +65,18 @@ class PlateAdapter(var context: Context, var arrayList: ArrayList<PlateData>):
 //                }
 //
 //            })
-            var cartItemQuantity:CartITemData = CartITemData(quantity = "2");
-            val callquantity = RestEngine.getRestEngine().create(ApiClient::class.java).editQuantityItem(3,cartItemQuantity);
-            callquantity.enqueue(object : Callback<CartITemData>{
-                override fun onResponse(call: Call<CartITemData>, response: Response<CartITemData>) {
-                    Log.d("LOGGING",response.toString());
-                }
-
-                override fun onFailure(call: Call<CartITemData>, t: Throwable) {
-                    Log.d("LOGGING","error");
-                }
-
-            })
+//            var cartItemQuantity:CartITemData = CartITemData(quantity = "2");
+//            val callquantity = RestEngine.getRestEngine().create(ApiClient::class.java).editQuantityItem(3,cartItemQuantity);
+//            callquantity.enqueue(object : Callback<CartITemData>{
+//                override fun onResponse(call: Call<CartITemData>, response: Response<CartITemData>) {
+//                    Log.d("LOGGING",response.toString());
+//                }
+//
+//                override fun onFailure(call: Call<CartITemData>, t: Throwable) {
+//                    Log.d("LOGGING","error");
+//                }
+//
+//            })
         }
         return ItemHolder(itemHolder)
 
@@ -73,13 +86,8 @@ class PlateAdapter(var context: Context, var arrayList: ArrayList<PlateData>):
 
         var plateData:PlateData = arrayList.get(position)
         Picasso.with(context).load(plateData.image).fit().into(holder.image);
-
-
         holder.name.text = plateData.name
         holder.price.text = "S/"+plateData.price.toString()
-
-
-
     }
 
     override fun getItemCount(): Int {
@@ -93,6 +101,42 @@ class PlateAdapter(var context: Context, var arrayList: ArrayList<PlateData>):
         var price = itemView.findViewById<TextView>(R.id.price_plate)
 
 
+    }
+
+    private fun getClickedPosition(clickedView: View): Int {
+        val recyclerView = clickedView.parent as RecyclerView
+        val currentViewHolder = recyclerView.getChildViewHolder(clickedView)
+        return currentViewHolder.getAdapterPosition()
+    }
+    fun addItemToCart(cartData: CartData){
+        val call = RestEngine.getRestEngine().create(ApiClient::class.java).findCartNotOrder(1);
+        call.enqueue(object :Callback<CartData>{
+            override fun onResponse(call: Call<CartData>, response: Response<CartData>) {
+                Log.d("LOGGING",response.body().toString())
+                if(response.body() != null){
+                    Log.d("LOGGING","hay")
+                }else{
+                    createCart(cartData);
+                }
+            }
+
+            override fun onFailure(call: Call<CartData>, t: Throwable) {
+                Log.d("LOGGING",t.message.toString())
+            }
+        })
+    }
+
+    fun createCart(cartData: CartData){
+        val call =  RestEngine.getRestEngine().create(ApiClient::class.java).createCart(cartData);
+        call.enqueue(object:Callback<CartData>{
+            override fun onResponse(call: Call<CartData>, response: Response<CartData>) {
+                Log.d("LOGGING",response.body().toString())
+            }
+
+            override fun onFailure(call: Call<CartData>, t: Throwable) {
+                Log.d("LOGGING","err")
+            }
+        })
     }
 
 

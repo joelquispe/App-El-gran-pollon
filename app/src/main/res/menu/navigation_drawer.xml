@@ -10,6 +10,10 @@
 
             android:checked="true" />
         <item
+                android:id="@+id/perfil"
+                android:icon="@drawable/ic_baseline_fastfood_24"
+                android:title="Mi perfil" />
+        <item
             android:id="@+id/item2"
             android:icon="@drawable/ic_baseline_fastfood_24"
             android:title="Categorias" />

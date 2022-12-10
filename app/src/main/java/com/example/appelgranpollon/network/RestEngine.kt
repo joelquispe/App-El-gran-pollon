@@ -27,6 +27,7 @@ class RestEngine {
             val interceptor = HttpLoggingInterceptor();
             interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
             val gson = GsonBuilder()
+                .setDateFormat("yyyy-MM-dd")
                 .setLenient()
                 .create()
             val cookieManager: CookieManager = CookieManager();

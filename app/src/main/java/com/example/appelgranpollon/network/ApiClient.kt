@@ -40,9 +40,22 @@ interface ApiClient {
     @POST("api/cart/registrar")
     fun createCart(@Body cart:CartData):Call<CartData>;
 
+    @GET("api/cart/listar/inOrder/{id}")
+    fun findCartInOrder(@Path("id") id:Int):Call<List<CartData>>;
+
+    @GET("api/cart/listar/notOrder/{id}")
+    fun findCartNotOrder(@Path("id") id:Int):Call<CartData>;
+
     @POST("api/cartItem/registrar")
     fun addItem(@Body cart:CartITemData):Call<CartITemData>;
 
     @PUT("api/cartItem/editar/quantity/{id}")
     fun editQuantityItem(@Path("id") id:Int,@Body cart:CartITemData):Call<CartITemData>;
+
+    @POST("api/creditCard/registrar")
+    fun createCard(@Body card:CardData):Call<CardData>;
+
+    @POST("api/address/registrar")
+    fun createAddress(@Body address:AddressData):Call<AddressData>;
+
 }

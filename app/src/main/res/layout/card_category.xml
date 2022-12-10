@@ -12,6 +12,7 @@
         card_view:contentPadding="4dp"
 >
     <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardCategory"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"

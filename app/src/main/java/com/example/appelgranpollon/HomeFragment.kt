@@ -22,6 +22,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.ToolbarWidgetWrapper
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.fragment.app.FragmentResultListener
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 
@@ -30,6 +31,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.appelgranpollon.Models.CartData
 import com.example.appelgranpollon.Models.CategoryData
 import com.example.appelgranpollon.Models.ClientData
 import com.example.appelgranpollon.Models.PlateData
@@ -53,6 +55,7 @@ class  HomeFragment : Fragment()   ,NavigationView.OnNavigationItemSelectedListe
 
     lateinit var inputSearch:TextInputEditText ;
     lateinit var drawerLayout:DrawerLayout ;
+    lateinit var textCategory:String;
     lateinit var views:View;
     lateinit var name:TextView;
     lateinit var client:ClientData;
@@ -76,6 +79,8 @@ class  HomeFragment : Fragment()   ,NavigationView.OnNavigationItemSelectedListe
         views =  inflater.inflate(R.layout.fragment_home, container, false);
         getProducts()
         var texto = getString(R.string.nameUser);
+
+
         inputSearch = views.findViewById<TextInputEditText>(R.id.inputSearch);
         filterProducts = ArrayList();
         inputSearch.addTextChangedListener(object:TextWatcher{
@@ -93,7 +98,7 @@ class  HomeFragment : Fragment()   ,NavigationView.OnNavigationItemSelectedListe
                 Log.d("LOGGING",allProducts.toString())
                 for(p in allProducts){
                     Log.d("LOGGING",p.name.compareTo(s.toString()).toString())
-                    if(p.category.name == s.toString() || p.name.compareTo(s.toString())>=0){
+                    if(p.category.name == s.toString() || p.name.compareTo(s.toString())==0){
                         filterProducts.add(p)
                         plateAdapter!!.notifyDataSetChanged()
                         Log.d("LOGGING",p.toString())
@@ -119,6 +124,10 @@ class  HomeFragment : Fragment()   ,NavigationView.OnNavigationItemSelectedListe
         recyclerView?.adapter = plateAdapter
         name = views.findViewById(R.id.txtTile)
         getUser(views)
+        if(arguments?.getString("category") != null){
+            textCategory = arguments?.getString("category")!!;
+            inputSearch.setText(textCategory)  ;
+        }
         return views;
     }
     fun navigate(view: View){
@@ -179,6 +188,7 @@ class  HomeFragment : Fragment()   ,NavigationView.OnNavigationItemSelectedListe
 
         when(item.itemId){
             R.id.item1-> drawerLayout.close()
+            R.id.perfil->Navigation.findNavController(views).navigate(R.id.profileFragment)
             R.id.item2 -> Navigation.findNavController(views).navigate(R.id.categoryFragment);
             R.id.item3-> logout()
             else ->{
@@ -198,4 +208,7 @@ class  HomeFragment : Fragment()   ,NavigationView.OnNavigationItemSelectedListe
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(views)
     }
+
+
+
 }

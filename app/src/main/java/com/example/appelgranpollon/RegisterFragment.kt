@@ -10,15 +10,22 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import com.example.appelgranpollon.Models.CartData
 import com.example.appelgranpollon.Models.ClientData
+import com.example.appelgranpollon.Models.MotorizedData
+import com.example.appelgranpollon.Services.SharedPrefs
 import com.example.appelgranpollon.enums.TypeUser
 import com.example.appelgranpollon.network.ApiClient
 import com.example.appelgranpollon.network.RestEngine
 import com.google.android.material.textfield.TextInputEditText
 import com.google.gson.Gson
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import retrofit2.awaitResponse
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -32,7 +39,8 @@ private const val ARG_PARAM2 = "param2"
  */
 class RegisterFragment : Fragment() {
 
-
+    lateinit var  customer:ClientData;
+    lateinit var views:View;
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -43,44 +51,89 @@ class RegisterFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_register, container, false)
-        val inputEmail = view.findViewById<TextInputEditText>(R.id.inputEmailRegister);
-        val inputPassword = view.findViewById<TextInputEditText>(R.id.inputPasswordRegister);
-        val inputName = view.findViewById<TextInputEditText>(R.id.inputNameRegister);
-        val inputLastname = view.findViewById<TextInputEditText>(R.id.inputLastNameRegister);
-        val inputPhone = view.findViewById<TextInputEditText>(R.id.inputPhoneRegister)
-        val inputDateOfBirth = view.findViewById<TextInputEditText>(R.id.inputDateOfbirthRegister);
+        views = inflater.inflate(R.layout.fragment_register, container, false)
+        val inputEmail = views.findViewById<TextInputEditText>(R.id.inputEmailRegister);
+        val inputPassword = views.findViewById<TextInputEditText>(R.id.inputPasswordRegister);
+        val inputName = views.findViewById<TextInputEditText>(R.id.inputNameRegister);
+        val inputLastname = views.findViewById<TextInputEditText>(R.id.inputLastNameRegister);
+        val inputPhone = views.findViewById<TextInputEditText>(R.id.inputPhoneRegister)
+        val inputDateOfBirth = views.findViewById<TextInputEditText>(R.id.inputDateOfbirthRegister);
 
-        val txtLogin = view.findViewById<TextView>(R.id.txtLogin);
-        val btnRegister = view.findViewById<Button>(R.id.btnRegister);
+        val txtLogin = views.findViewById<TextView>(R.id.txtLogin);
+        val btnRegister = views.findViewById<Button>(R.id.btnRegister);
         btnRegister.setOnClickListener {
-            val customer:ClientData = ClientData(email = inputEmail.text.toString(), password = inputPassword.text.toString(), name = inputName.text.toString(), lastname = inputLastname.text.toString(), phone = inputPhone.text.toString(), dateofbirth = inputDateOfBirth.text.toString())
-            try {
+            customer = ClientData(email = inputEmail.text.toString(), password = inputPassword.text.toString(), name = inputName.text.toString(), lastname = inputLastname.text.toString(), phone = inputPhone.text.toString(), dateofbirth = inputDateOfBirth.text.toString())
+            Log.d("LOGGING",customer.toString())
 
-//                val fromCustomerJson = Gson().toJson(customer);
-//                val fromCUstomer = Gson().fromJson<ClientData>(fromCustomerJson,ClientData::class.java);
+            try {
                 val call = RestEngine.getRestEngine().create(ApiClient::class.java).registerClient(customer)
+
+                val fromCustomerJson = Gson().toJson(customer);
+                val fromCUstomer = Gson().fromJson<ClientData>(fromCustomerJson,ClientData::class.java);
+
+
                 call.enqueue(object : Callback<ClientData>{
                     override fun onFailure(call: Call<ClientData>, t: Throwable) {
-                        Log.d("LOGGING","err")
-                        Navigation.findNavController(view).navigate(R.id.loginFragment);
+
+                        login()
+
                     }
 
                     override fun onResponse(call: Call<ClientData>, response: Response<ClientData>) {
                         Log.d("LOGGING","sss")
-                        Navigation.findNavController(view).navigate(R.id.loginFragment);
+                        Navigation.findNavController(views).navigate(R.id.loginFragment);
                     }
                 });
 
-            }finally{
 
+            }catch (t:Throwable){
+                Log.d("LOGGING",t.toString())
             }
 
         }
+
         txtLogin.setOnClickListener(){
-            Navigation.findNavController(view).navigate(R.id.loginFragment);
+            Navigation.findNavController(views).navigate(R.id.loginFragment);
         }
-        return view;
+        return views;
+    }
+
+    fun createCart(){
+
+        val client:ClientData = Gson().fromJson(SharedPrefs(views.context).getUser(),ClientData::class.java);
+        val cartData:CartData = CartData(total = "0.00", isInOrder = false, cliente =ClientData(id = client.id) )
+        val call = RestEngine.getRestEngine().create(ApiClient::class.java).createCart(cartData);
+        call.enqueue(object :Callback<CartData>{
+            override fun onResponse(call: Call<CartData>, response: Response<CartData>) {
+                Log.d("LOGGING","ssss")
+            }
+
+            override fun onFailure(call: Call<CartData>, t: Throwable) {
+                Log.d("LOGGING","errrr")
+            }
+        })
+
+
+    }
+
+    fun login(){
+        val call= RestEngine.getRestEngine().create(ApiClient::class.java).verifyClient(customer.email,customer.password);
+        val res = call.execute();
+        try{
+
+            val customerr = Gson().getAdapter(ClientData::class.java).fromJson(res.errorBody()?.string());
+            Log.d("LOGGING",customerr.toString())
+            SharedPrefs(views.context).saveTypeUser(TypeUser.Customer.name);
+            SharedPrefs(views.context).saveUser(Gson().toJson(customerr));
+            createCart();
+            Navigation.findNavController(views).navigate(R.id.homeFragment);
+        }catch (t:Throwable){
+            val customerr = Gson().getAdapter(ClientData::class.java).fromJson(res.errorBody()?.string());
+            SharedPrefs(views.context).saveTypeUser(TypeUser.Customer.name);
+            SharedPrefs(views.context).saveUser(Gson().toJson(customerr));
+            Navigation.findNavController(views).navigate(R.id.homeFragment);
+
+        }
     }
 
 

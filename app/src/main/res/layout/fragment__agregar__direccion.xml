@@ -32,7 +32,7 @@
                 android:paddingStart="12dp"
                 android:background="#7D7F7D"
                 android:layout_margin="20dp"
-                android:id="@+id/editTextTextPersonName" />
+                android:id="@+id/inputDirection" />
 
         <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -43,7 +43,7 @@
                 android:paddingStart="12dp"
                 android:background="#7D7F7D"
                 android:layout_margin="20dp"
-                android:id="@+id/editTextTextPersonName2" />
+                android:id="@+id/inputCity" />
 
         <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -54,7 +54,7 @@
                 android:paddingStart="12dp"
                 android:background="#7D7F7D"
                 android:layout_margin="20dp"
-                android:id="@+id/editTextTextPersonName3" />
+                android:id="@+id/inputNumber" />
 
         <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -65,7 +65,7 @@
                 android:paddingStart="12dp"
                 android:background="#7D7F7D"
                 android:layout_margin="20dp"
-                android:id="@+id/editTextTextPersonName4" />
+                android:id="@+id/inputReference" />
 
         <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -76,13 +76,27 @@
                 android:ems="10"
                 android:background="#7D7F7D"
                 android:layout_margin="20dp"
-                android:id="@+id/editTextTextPersonName5" />
-
+                android:id="@+id/inputStreet" />
+        <!--
         <com.google.android.gms.maps.MapView
                 android:layout_width="match_parent"
                 android:layout_height="130dp"
                 android:layout_margin="20dp"
-                android:id="@+id/mapView" />
+                android:id="@+id/mapView" /> -->
+        <LinearLayout
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:gravity="center_horizontal">
+
+            <Button
+                    android:id="@+id/btnSaveAddress"
+                    android:layout_width="250dp"
+                    android:layout_height="70dp"
+                    android:text="Guardar"
+            />
+
+        </LinearLayout>
     </LinearLayout>
+
 
 </FrameLayout>

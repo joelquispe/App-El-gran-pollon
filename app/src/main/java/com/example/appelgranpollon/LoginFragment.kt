@@ -21,9 +21,11 @@ import com.example.appelgranpollon.Services.SharedPrefs
 import com.example.appelgranpollon.enums.TypeUser
 import com.example.appelgranpollon.network.ApiClient
 import com.example.appelgranpollon.network.RestEngine
+import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.material.switchmaterial.SwitchMaterial
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
+import com.google.firebase.messaging.FirebaseMessaging
 import com.google.gson.Gson
 import retrofit2.Call
 import retrofit2.Callback
@@ -66,24 +68,25 @@ class LoginFragment : Fragment() {
         val inputPassword = viewOfLayout.findViewById<TextInputEditText>(R.id.inputPassword);
         val txtRegister = viewOfLayout.findViewById<TextView>(R.id.txtRegister);
         boton.setOnClickListener (){
-            var typeUser = if(isMotorized.isChecked){
-                TypeUser.Motorized.name;
-            }else{
-                TypeUser.Customer.name;
-            }
-            lateinit var client:ClientData;
-            validateEmpty(inputEmail.text.toString(),inputPassword.text.toString(),viewOfLayout);
-            if(isEmailValidate && isPasswordValidate){
-                Log.d("LOGGING",typeUser)
-                if(typeUser == TypeUser.Customer.name){
-                    loginCustomer(typeUser,inputEmail,inputPassword);
-                }else if(typeUser == TypeUser.Motorized.name){
-                    loginMotorized(typeUser,inputEmail,inputPassword);
-                }else{
-
-                }
-
-            }
+            messagins()
+//            var typeUser = if(isMotorized.isChecked){
+//                TypeUser.Motorized.name;
+//            }else{
+//                TypeUser.Customer.name;
+//            }
+//            lateinit var client:ClientData;
+//            validateEmpty(inputEmail.text.toString(),inputPassword.text.toString(),viewOfLayout);
+//            if(isEmailValidate && isPasswordValidate){
+//                Log.d("LOGGING",typeUser)
+//                if(typeUser == TypeUser.Customer.name){
+//                    loginCustomer(typeUser,inputEmail,inputPassword);
+//                }else if(typeUser == TypeUser.Motorized.name){
+//                    loginMotorized(typeUser,inputEmail,inputPassword);
+//                }else{
+//
+//                }
+//
+//            }
 
         }
         txtRegister.setOnClickListener(){
@@ -197,6 +200,18 @@ class LoginFragment : Fragment() {
         getUser()
     }
 
+    fun messagins(){
+        FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
+            if (!task.isSuccessful) {
+                Log.w("info", "Fetching FCM registration token failed", task.exception)
+                return@OnCompleteListener
+            }
 
+            // Get new FCM registration token
+            val token = task.result
+            Log.d("INFO",token.toString())
+
+        })
+    }
 
 }

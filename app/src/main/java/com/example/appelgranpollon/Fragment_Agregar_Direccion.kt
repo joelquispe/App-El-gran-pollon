@@ -1,32 +1,37 @@
 package com.example.appelgranpollon
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import androidx.navigation.Navigation
+import com.example.appelgranpollon.Models.AddressData
+import com.example.appelgranpollon.Models.ClientData
+import com.example.appelgranpollon.Services.SharedPrefs
+import com.example.appelgranpollon.network.ApiClient
+import com.example.appelgranpollon.network.RestEngine
+import com.google.android.material.textfield.TextInputEditText
+import com.google.gson.Gson
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [Fragment_Agregar_Direccion.newInstance] factory method to
- * create an instance of this fragment.
- */
 class Fragment_Agregar_Direccion : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
+    lateinit var client: ClientData
+    lateinit var views:View;
+    lateinit var inputAddress: TextInputEditText;
+    lateinit var inputCity: TextInputEditText;
+    lateinit var inputNumber: TextInputEditText;
+    lateinit var inputReference: TextInputEditText;
+    lateinit var inputStreet: TextInputEditText;
+    lateinit var btnSaveAddress: Button;
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+
     }
 
     override fun onCreateView(
@@ -34,26 +39,42 @@ class Fragment_Agregar_Direccion : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment__agregar__direccion, container, false)
+        views =  inflater.inflate(R.layout.fragment__agregar__direccion, container, false)
+        getUser(views)
+        inputAddress = views.findViewById<TextInputEditText>(R.id.inputDirection)
+        inputCity = views.findViewById<TextInputEditText>(R.id.inputCity)
+        inputNumber = views.findViewById<TextInputEditText>(R.id.inputNumber)
+        inputReference = views.findViewById<TextInputEditText>(R.id.inputReference)
+        inputStreet = views.findViewById<TextInputEditText>(R.id.inputStreet)
+        btnSaveAddress = views.findViewById<Button>(R.id.btnSaveAddress)
+        btnSaveAddress.setOnClickListener {
+            Log.d("LOGGING",client.toString())
+            createAddress()
+        }
+        return  views;
+    }
+    private fun getUser(view:View){
+        var data =  SharedPrefs(view.context).getUser();
+        client = Gson().fromJson(data, ClientData::class.java)
+
+        if(client != null){
+            Log.d("LOGGING",client.toString())
+        }
+    }
+    private fun createAddress(){
+        val addresss = AddressData(address = inputAddress.text.toString(), number = inputNumber.text.toString(), street = inputStreet.text.toString(), city = inputCity.text.toString(), reference = inputReference.text.toString(), cliente = ClientData(id = client.id), latitude = "1231313123", longitude = "12312312");
+        val call = RestEngine.getRestEngine().create(ApiClient::class.java).createAddress(address = addresss);
+        call.enqueue(object: Callback<AddressData> {
+            override fun onResponse(call: Call<AddressData>, response: Response<AddressData>) {
+                Log.d("LOGGING",response.toString())
+                Navigation.findNavController(views).navigate(R.id.profileFragment);
+            }
+
+            override fun onFailure(call: Call<AddressData>, t: Throwable) {
+                Log.d("LOGGING","err")
+            }
+        })
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment Fragment_Agregar_Direccion.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            Fragment_Agregar_Direccion().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
-    }
+
 }

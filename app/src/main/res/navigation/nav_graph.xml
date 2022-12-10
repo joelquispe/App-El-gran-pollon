@@ -42,6 +42,7 @@
         <action
             android:id="@+id/action_homeFragment_to_categoryFragment"
             app:destination="@id/categoryFragment" />
+        <action android:id="@+id/action_homeFragment_to_profileFragment" app:destination="@id/profileFragment"/>
     </fragment>
     <fragment
         android:id="@+id/shoppingCartFragment"
@@ -109,4 +110,12 @@
               android:label="fragment_orders" tools:layout="@layout/fragment_orders"/>
     <fragment android:id="@+id/motorizedHomeFragment" android:name="com.example.appelgranpollon.MotorizedHomeFragment"
               android:label="fragment_motorized_home" tools:layout="@layout/fragment_motorized_home"/>
+    <fragment android:id="@+id/profileFragment" android:name="com.example.appelgranpollon.ProfileFragment"
+              android:label="fragment_profile" tools:layout="@layout/fragment_profile">
+        <action android:id="@+id/action_profileFragment_to_cardFragment" app:destination="@id/cardFragment"/>
+        <action android:id="@+id/action_profileFragment_to_fragment_Agregar_Direccion"
+                app:destination="@id/fragment_Agregar_Direccion"/>
+    </fragment>
+    <fragment android:id="@+id/cardFragment" android:name="com.example.appelgranpollon.CardFragment"
+              android:label="fragment_card" tools:layout="@layout/fragment_card"/>
 </navigation>
