@@ -8,6 +8,7 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.os.Build
+import android.util.Log
 import android.widget.RemoteViews
 import androidx.core.app.NotificationCompat
 import com.google.firebase.messaging.FirebaseMessagingService
@@ -18,8 +19,15 @@ const val channelId ="notification_channel"
 const val channelName = "com.example.appelgranpollon"
 class MyFirebaseMessagingService :FirebaseMessagingService(){
     override fun onMessageReceived(message: RemoteMessage) {
-        if(message.notification != null){
-            generateNotification(message.notification!!.title!!,message.notification!!.body!!)
+        super.onMessageReceived(message)
+        if(message.getNotification() != null){
+            Log.d("INFO",message.notification?.body.toString())
+            try{
+                generateNotification(message.notification!!.title!!,message.notification!!.body!!)
+            }catch(t:Throwable){
+                Log.d("INFO",t.stackTraceToString())
+            }
+
         }
     }
 
@@ -43,10 +51,13 @@ class MyFirebaseMessagingService :FirebaseMessagingService(){
             .setVibrate(longArrayOf(1000,1000,1000,1000))
             .setOnlyAlertOnce(true)
             .setContentIntent(pendingIntent)
+            .setPriority(Notification.PRIORITY_MAX)
+            .setDefaults(Notification.DEFAULT_ALL)
         builder = builder.setContent(getRemoteView(title,message))
         val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager;
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
             val notifcationChannel = NotificationChannel(channelId, channelName,NotificationManager.IMPORTANCE_HIGH);
+
             notificationManager.createNotificationChannel(notifcationChannel)
         }
         notificationManager.notify(0,builder.build())

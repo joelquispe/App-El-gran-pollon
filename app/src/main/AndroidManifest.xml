@@ -2,8 +2,16 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         package="com.example.appelgranpollon">
-    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" tools:node="remove"/>
+
+    <uses-permission android:name="android.permission.SEND_SMS"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="com.google.android.c2dm.permission.Recieve" />
+    <uses-permission android:name="com.google.android.c2dm.permission.send" />
+    <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission." />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
     <application
             android:allowBackup="true"
@@ -42,9 +50,10 @@
         </activity>
         <service
                 android:name=".MyFirebaseMessagingService"
-                android:exported="false" tools:ignore="Instantiatable">
+                android:exported="false" >
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
+                <action android:name="com.google.android.c2dm.permission.Recieve"/>
             </intent-filter>
         </service>
     </application>

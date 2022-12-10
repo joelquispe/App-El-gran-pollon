@@ -68,25 +68,25 @@ class LoginFragment : Fragment() {
         val inputPassword = viewOfLayout.findViewById<TextInputEditText>(R.id.inputPassword);
         val txtRegister = viewOfLayout.findViewById<TextView>(R.id.txtRegister);
         boton.setOnClickListener (){
-            messagins()
-//            var typeUser = if(isMotorized.isChecked){
-//                TypeUser.Motorized.name;
-//            }else{
-//                TypeUser.Customer.name;
-//            }
-//            lateinit var client:ClientData;
-//            validateEmpty(inputEmail.text.toString(),inputPassword.text.toString(),viewOfLayout);
-//            if(isEmailValidate && isPasswordValidate){
-//                Log.d("LOGGING",typeUser)
-//                if(typeUser == TypeUser.Customer.name){
-//                    loginCustomer(typeUser,inputEmail,inputPassword);
-//                }else if(typeUser == TypeUser.Motorized.name){
-//                    loginMotorized(typeUser,inputEmail,inputPassword);
-//                }else{
-//
-//                }
-//
-//            }
+//            messagins()
+            var typeUser = if(isMotorized.isChecked){
+                TypeUser.Motorized.name;
+            }else{
+                TypeUser.Customer.name;
+            }
+            lateinit var client:ClientData;
+            validateEmpty(inputEmail.text.toString(),inputPassword.text.toString(),viewOfLayout);
+            if(isEmailValidate && isPasswordValidate){
+                Log.d("LOGGING",typeUser)
+                if(typeUser == TypeUser.Customer.name){
+                    loginCustomer(typeUser,inputEmail,inputPassword);
+                }else if(typeUser == TypeUser.Motorized.name){
+                    loginMotorized(typeUser,inputEmail,inputPassword);
+                }else{
+
+                }
+
+            }
 
         }
         txtRegister.setOnClickListener(){
