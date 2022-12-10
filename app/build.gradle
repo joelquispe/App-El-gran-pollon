@@ -35,10 +35,11 @@ android {
         viewBinding true
         dataBinding=true
     }
+
 }
 
 dependencies {
-    implementation 'com.google.android.gms:play-services-maps:18.1.0'
+    implementation 'com.google.android.gms:play-services-maps:17.0.0'
     def nav_version = "2.5.1"
     implementation 'com.google.gms:google-services:4.3.14'
     implementation platform('com.google.firebase:firebase-bom:31.1.1')
@@ -71,6 +72,7 @@ dependencies {
     implementation "com.squareup.okhttp3:okhttp-urlconnection:4.6.0"
     implementation 'com.squareup.picasso:picasso:2.5.2'
     implementation 'com.google.firebase:firebase-messaging-ktx:23.1.1'
+    implementation 'com.adevinta.android:leku:9.1.4'
 
 
 }

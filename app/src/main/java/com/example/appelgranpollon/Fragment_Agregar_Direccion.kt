@@ -2,17 +2,23 @@ package com.example.appelgranpollon
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.example.appelgranpollon.Models.AddressData
 import com.example.appelgranpollon.Models.ClientData
 import com.example.appelgranpollon.Services.SharedPrefs
 import com.example.appelgranpollon.network.ApiClient
 import com.example.appelgranpollon.network.RestEngine
+import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.textfield.TextInputEditText
 import com.google.gson.Gson
 import retrofit2.Call
@@ -20,7 +26,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 
-class Fragment_Agregar_Direccion : Fragment() {
+class Fragment_Agregar_Direccion : Fragment(), OnMapReadyCallback , GoogleMap.OnMapClickListener, GoogleMap.OnMapLongClickListener{
     lateinit var client: ClientData
     lateinit var views:View;
     lateinit var inputAddress: TextInputEditText;
@@ -29,6 +35,9 @@ class Fragment_Agregar_Direccion : Fragment() {
     lateinit var inputReference: TextInputEditText;
     lateinit var inputStreet: TextInputEditText;
     lateinit var btnSaveAddress: Button;
+    lateinit var longitude:String;
+    lateinit var latitude:String;
+    lateinit var mMap:GoogleMap;
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -41,17 +50,24 @@ class Fragment_Agregar_Direccion : Fragment() {
         // Inflate the layout for this fragment
         views =  inflater.inflate(R.layout.fragment__agregar__direccion, container, false)
         getUser(views)
+createMapFragment()
         inputAddress = views.findViewById<TextInputEditText>(R.id.inputDirection)
         inputCity = views.findViewById<TextInputEditText>(R.id.inputCity)
         inputNumber = views.findViewById<TextInputEditText>(R.id.inputNumber)
         inputReference = views.findViewById<TextInputEditText>(R.id.inputReference)
         inputStreet = views.findViewById<TextInputEditText>(R.id.inputStreet)
         btnSaveAddress = views.findViewById<Button>(R.id.btnSaveAddress)
+
+
         btnSaveAddress.setOnClickListener {
             Log.d("LOGGING",client.toString())
             createAddress()
         }
         return  views;
+    }
+    private fun createMapFragment(){
+        val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment;
+        mapFragment.getMapAsync(this);
     }
     private fun getUser(view:View){
         var data =  SharedPrefs(view.context).getUser();
@@ -74,6 +90,28 @@ class Fragment_Agregar_Direccion : Fragment() {
                 Log.d("LOGGING","err")
             }
         })
+    }
+
+    override fun onMapReady(p0: GoogleMap) {
+        mMap = p0;
+        this.mMap.setOnMapClickListener(this)
+        this.mMap.setOnMapLongClickListener(this)
+        val initialPosition = LatLng(19.8077463, -99.4077038)
+        mMap.addMarker(MarkerOptions().position(initialPosition).title("ME"))
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(initialPosition))
+    }
+
+    override fun onMapClick(p0: LatLng) {
+        longitude = p0.longitude.toString()
+        latitude = p0.latitude.toString()
+        mMap.clear();
+        var positionCustom = LatLng(p0.latitude, p0.longitude)
+        mMap.addMarker(MarkerOptions().position(positionCustom).title("ME"))
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(positionCustom))
+    }
+
+    override fun onMapLongClick(p0: LatLng) {
+        TODO("Not yet implemented")
     }
 
 
