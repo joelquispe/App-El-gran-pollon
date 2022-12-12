@@ -13,13 +13,14 @@
         >
 
     <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardOrder"
             android:layout_width="match_parent"
             android:layout_height="110dp"
             android:orientation="horizontal"
             app:cardBackgroundColor="#7D7F7D"
             app:cardCornerRadius="20dp">
         <TextView
-                android:id="@+id/nomPedido"
+                android:id="@+id/nomCliente"
                 android:layout_width="250dp"
                 android:layout_height="30dp"
                 android:layout_margin="10dp"
