@@ -10,7 +10,15 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="25dp">
+        <TableRow
+                android:layout_marginLeft="20dp"
+                android:layout_height="wrap_content"
 
+                android:gravity="start">
+
+           <ImageButton android:gravity="start" android:layout_gravity="start" android:textAlignment="textStart" android:layout_width="10dp" android:src="@drawable/ic_baseline_arrow_back_ios_24" android:id="@+id/btnBack" android:background="@color/black"/>
+
+        </TableRow>
         <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

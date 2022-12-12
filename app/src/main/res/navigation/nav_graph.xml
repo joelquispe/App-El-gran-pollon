@@ -115,7 +115,10 @@
         <action android:id="@+id/action_profileFragment_to_cardFragment" app:destination="@id/cardFragment"/>
         <action android:id="@+id/action_profileFragment_to_fragment_Agregar_Direccion"
                 app:destination="@id/fragment_Agregar_Direccion"/>
+        <action android:id="@+id/action_profileFragment_to_cardsFragment" app:destination="@id/cardsFragment"/>
     </fragment>
     <fragment android:id="@+id/cardFragment" android:name="com.example.appelgranpollon.CardFragment"
               android:label="fragment_card" tools:layout="@layout/fragment_card"/>
+    <fragment android:id="@+id/cardsFragment" android:name="com.example.appelgranpollon.cardsFragment"
+              android:label="fragment_cards" tools:layout="@layout/fragment_cards"/>
 </navigation>

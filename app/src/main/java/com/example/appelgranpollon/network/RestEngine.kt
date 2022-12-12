@@ -37,11 +37,9 @@ class RestEngine {
 
             val retrofit = Retrofit.Builder().baseUrl(ipsosaya).addConverterFactory( GsonConverterFactory.create(gson)).client(cliente).build();
 
-
             return retrofit;
         }
     }
-
     fun  writeErrorBody(clase:Class<Object>,resp:String ):Any{
         return Gson().getAdapter(clase).fromJson(resp);
     }

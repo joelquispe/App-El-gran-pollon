@@ -65,4 +65,15 @@ interface ApiClient {
 
     @GET("api/cartItem/listar/cart/{id}")
     fun getCartItemByCart(@Path("id") id: Int):Call<List<CartITemData>>
+
+    @GET("api/order/listar/customer/{id}")
+    fun getOrders(@Path("id") id:Int):Call<List<OrderData>>
+
+    @Headers("Content-Type: application/json")
+    @GET("api/creditCard/listar/customer/{id}")
+    fun getCardsByCustomer(@Path("id") id:Int):Call<List<CardData>>
+
+    @Headers("Content-Type: application/json")
+    @GET("api/address/listar/customer/{id}")
+    fun getAddressByCustomer(@Path("id") id:Int):Call<List<AddressData>>
 }

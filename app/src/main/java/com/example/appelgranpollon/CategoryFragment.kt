@@ -50,7 +50,7 @@ class CategoryFragment : Fragment() ,NavigationView.OnNavigationItemSelectedList
         recyclerView?.layoutManager = gridLayoutManager
         arrayList = ArrayList()
         arrayList = allCategories;
-        categoryAdapter = CategoryAdapter(views.context,arrayList!!)
+        categoryAdapter = CategoryAdapter(views.context,allCategories)
         recyclerView?.adapter = categoryAdapter
 
         return views;

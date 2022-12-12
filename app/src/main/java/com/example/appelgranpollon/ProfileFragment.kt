@@ -28,6 +28,7 @@ private const val ARG_PARAM2 = "param2"
 class ProfileFragment : Fragment() {
     lateinit var client:ClientData;
     lateinit var views:View;
+    lateinit var backButton:ImageButton;
     lateinit var  navController:NavController;
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,13 +45,17 @@ class ProfileFragment : Fragment() {
         val btnMethodPay:Button = views.findViewById<Button>(R.id.methodPayBtn);
         val btnAddCard:ImageButton = views.findViewById<ImageButton>(R.id.btnAddCard)
         val btnAddAddress:ImageButton = views.findViewById<ImageButton>(R.id.btnAddAddress)
+        val backButton = views.findViewById<ImageButton>(R.id.btnBack);
+        backButton.setOnClickListener {
+            navController.navigate(R.id.homeFragment)
+        }
         btnAddress.setOnClickListener {
             Log.d("LOGGING","err")
             navController.navigate(R.id.addressFragment)
         }
         btnMethodPay.setOnClickListener {
             Log.d("LOGGING","btn method pay")
-            navController.navigate(R.id.addressFragment)
+            navController.navigate(R.id.cardsFragment)
         }
         btnAddCard.setOnClickListener {
             navController.navigate(R.id.cardFragment)

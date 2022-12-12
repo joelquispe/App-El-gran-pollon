@@ -4,9 +4,9 @@ import java.sql.Date
 
 data class OrderData(
     val id:Int? = null,
-    val order_date:Date,
+    val orderDate:String,
     val total:String,
-    val status:Boolean,
+    val status:String,
     val address:AddressData,
     val cliente:ClientData,
     val cart:CartData

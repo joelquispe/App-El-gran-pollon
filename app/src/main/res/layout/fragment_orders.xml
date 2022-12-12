@@ -14,8 +14,9 @@
             >
 
         <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/RecyclerOrders"
                 android:layout_width="400dp"
-                android:layout_margin="5dp"
+
                 android:layout_height="700dp"
                 tools:listitem="@layout/card_order"/>
     </LinearLayout>

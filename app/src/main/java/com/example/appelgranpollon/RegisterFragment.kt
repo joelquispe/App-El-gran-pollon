@@ -110,10 +110,12 @@ class RegisterFragment : Fragment() {
         call.enqueue(object :Callback<CartData>{
             override fun onResponse(call: Call<CartData>, response: Response<CartData>) {
                 Log.d("LOGGING","ssss")
+
             }
 
             override fun onFailure(call: Call<CartData>, t: Throwable) {
                 Log.d("LOGGING","errrr")
+                getCart(client)
             }
         })
 
@@ -129,8 +131,9 @@ class RegisterFragment : Fragment() {
             Log.d("LOGGING",customerr.toString())
             SharedPrefs(views.context).saveTypeUser(TypeUser.Customer.name);
             SharedPrefs(views.context).saveUser(Gson().toJson(customerr));
-            getCart(customerr)
-            Navigation.findNavController(views).navigate(R.id.homeFragment);
+            createCart()
+
+
         }catch (t:Throwable){
             val customerr = Gson().getAdapter(ClientData::class.java).fromJson(res.errorBody()?.string());
             SharedPrefs(views.context).saveTypeUser(TypeUser.Customer.name);
@@ -145,6 +148,7 @@ class RegisterFragment : Fragment() {
         try {
             val cart:CartData = Gson().getAdapter(CartData::class.java).fromJson(res.errorBody()?.string())
             SharedPrefs(views.context).saveCart(Gson().toJson(cart))
+            Navigation.findNavController(views).navigate(R.id.homeFragment);
             Log.d("INFO","bien")
             Log.d("INFO",cart.toString())
         }catch (t:Throwable){

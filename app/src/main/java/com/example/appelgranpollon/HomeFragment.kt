@@ -90,14 +90,23 @@ class  HomeFragment : Fragment()   ,NavigationView.OnNavigationItemSelectedListe
 
             }
 
+            @SuppressLint("NotifyDataSetChanged")
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-
+//                Log.d("INFO",s.toString());
+//                if (s != null) {
+//                    if(s.isBlank()){
+//                        filterProducts = allProducts;
+//                        plateAdapter!!.notifyDataSetChanged()
+//                        Log.d("INFO",allProducts.toString());
+//                        Log.d("INFO",filterProducts.toString());
+//                    }
+//                }
             }
 
             @SuppressLint("NotifyDataSetChanged")
             override fun afterTextChanged(s: Editable?) {
                 filterProducts.clear()
-                Log.d("LOGGING",allProducts.toString())
+                Log.d("LOGGING","allproduct"+allProducts.toString())
                 for(p in allProducts){
                     Log.d("LOGGING",p.name.compareTo(s.toString()).toString())
                     if(p.category.name == s.toString() || p.name.compareTo(s.toString())==0){
@@ -106,6 +115,7 @@ class  HomeFragment : Fragment()   ,NavigationView.OnNavigationItemSelectedListe
                         Log.d("LOGGING",p.toString())
                     }
                 }
+
                 plateAdapter!!.notifyDataSetChanged()
 
             }
@@ -121,7 +131,7 @@ class  HomeFragment : Fragment()   ,NavigationView.OnNavigationItemSelectedListe
         recyclerView?.layoutManager = gridLayoutManager
         arrayList = ArrayList()
         arrayList = allProducts
-        filterProducts = allProducts.clone() as ArrayList<PlateData>
+        filterProducts.addAll(allProducts)
         plateAdapter = PlateAdapter(views.context,filterProducts)
         recyclerView?.adapter = plateAdapter
         name = views.findViewById(R.id.txtTile)
@@ -199,6 +209,7 @@ class  HomeFragment : Fragment()   ,NavigationView.OnNavigationItemSelectedListe
             R.id.item1-> drawerLayout.close()
             R.id.perfil->Navigation.findNavController(views).navigate(R.id.profileFragment)
             R.id.item2 -> Navigation.findNavController(views).navigate(R.id.categoryFragment);
+            R.id.drawerOrders-> Navigation.findNavController(views).navigate(R.id.ordersFragment);
             R.id.item3-> logout()
             else ->{
                 print("joel")

@@ -18,6 +18,10 @@
             android:icon="@drawable/ic_baseline_fastfood_24"
             android:title="Categorias" />
         <item
+                android:id="@+id/drawerOrders"
+                android:icon="@drawable/ic_baseline_fastfood_24"
+                android:title="Mis pedidos" />
+        <item
             android:id="@+id/item3"
             android:icon="@drawable/ic_baseline_logout_24"
             android:title="Cerrar Sesión" />

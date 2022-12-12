@@ -68,6 +68,7 @@ class CardFragment : Fragment() {
 
             override fun onFailure(call: Call<CardData>, t: Throwable) {
                 Log.d("LOGGGING","err")
+                Navigation.findNavController(views).navigate(R.id.profileFragment);
             }
         })
 

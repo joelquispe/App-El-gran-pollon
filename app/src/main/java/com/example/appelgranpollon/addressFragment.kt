@@ -7,9 +7,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.appelgranpollon.Models.AddressData
+import com.example.appelgranpollon.Models.CardData
 import com.example.appelgranpollon.Models.ClientData
 import com.example.appelgranpollon.Services.SharedPrefs
+import com.example.appelgranpollon.adapters.AddressAdapter
+import com.example.appelgranpollon.adapters.CardsAdapter
 import com.example.appelgranpollon.network.ApiClient
 import com.example.appelgranpollon.network.RestEngine
 import com.google.android.material.textfield.TextInputEditText
@@ -18,19 +24,14 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [addressFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class addressFragment : Fragment() {
 
     lateinit var views:View;
+    lateinit var addresses:ArrayList<AddressData>
+    lateinit var addressAdapter: AddressAdapter;
+    private var recyclerView: RecyclerView?= null
+    private var gridLayoutManager: GridLayoutManager?= null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -42,9 +43,30 @@ class addressFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         views = inflater.inflate(R.layout.fragment_address, container, false)
-
+        getAddresses()
+        recyclerView = views.findViewById(R.id.recyclerViewAddress)
+        gridLayoutManager = GridLayoutManager(views.context,1, LinearLayoutManager.VERTICAL,false)
+        recyclerView?.layoutManager = gridLayoutManager;
+        addressAdapter = AddressAdapter(views.context,addresses)
+        recyclerView?.adapter = addressAdapter
         return  views;
     }
+    fun getAddresses (){
+        val client = Gson().fromJson(SharedPrefs(views.context).getUser(), ClientData::class.java);
+        val call = RestEngine.getRestEngine().create(ApiClient::class.java).getAddressByCustomer(client.id!!)
+        val response = call.execute();
+        Log.d("LOGGING","asdcomenzando");
+        Log.d("LOGGING",response.body().toString());
 
+
+        var resAddresses:List<AddressData>?  = response.body();
+        if (resAddresses != null) {
+
+            addresses = ArrayList(resAddresses);
+        };
+        Log.d("LOGGING",resAddresses.toString());
+
+
+    }
 
 }

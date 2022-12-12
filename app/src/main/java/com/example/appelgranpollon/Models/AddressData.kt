@@ -1,7 +1,7 @@
 package com.example.appelgranpollon.Models
 
 data class AddressData(
-    val id_address:Int? = null,
+    val idAddress:Int? = null,
     val address:String,
     val city:String,
     val latitude:String,

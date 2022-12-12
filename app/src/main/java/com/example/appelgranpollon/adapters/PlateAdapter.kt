@@ -59,10 +59,12 @@ class PlateAdapter(var context: Context, var arrayList: ArrayList<PlateData>):
             call.enqueue(object : Callback<CartITemData>{
                 override fun onResponse(call: Call<CartITemData>, response: Response<CartITemData>) {
                     Log.d("LOGGING",response.toString());
+
                 }
 
                 override fun onFailure(call: Call<CartITemData>, t: Throwable) {
                     Log.d("LOGGING","error");
+                    Toast.makeText(context,"Producto agregado",Toast.LENGTH_SHORT).show();
                 }
 
             })
