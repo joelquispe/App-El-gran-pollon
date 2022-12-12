@@ -78,7 +78,7 @@ createMapFragment()
         }
     }
     private fun createAddress(){
-        val addresss = AddressData(address = inputAddress.text.toString(), number = inputNumber.text.toString(), street = inputStreet.text.toString(), city = inputCity.text.toString(), reference = inputReference.text.toString(), cliente = ClientData(id = client.id), latitude = "1231313123", longitude = "12312312");
+        val addresss = AddressData(address = inputAddress.text.toString(), number = inputNumber.text.toString(), street = inputStreet.text.toString(), city = inputCity.text.toString(), reference = inputReference.text.toString(), cliente = ClientData(id = client.id), latitude = latitude, longitude = longitude);
         val call = RestEngine.getRestEngine().create(ApiClient::class.java).createAddress(address = addresss);
         call.enqueue(object: Callback<AddressData> {
             override fun onResponse(call: Call<AddressData>, response: Response<AddressData>) {
@@ -88,6 +88,7 @@ createMapFragment()
 
             override fun onFailure(call: Call<AddressData>, t: Throwable) {
                 Log.d("LOGGING","err")
+                Navigation.findNavController(views).navigate(R.id.profileFragment);
             }
         })
     }
@@ -96,7 +97,8 @@ createMapFragment()
         mMap = p0;
         this.mMap.setOnMapClickListener(this)
         this.mMap.setOnMapLongClickListener(this)
-        val initialPosition = LatLng(19.8077463, -99.4077038)
+
+        val initialPosition = LatLng(-12.07469232190916, -77.06610142422456)
         mMap.addMarker(MarkerOptions().position(initialPosition).title("ME"))
         mMap.moveCamera(CameraUpdateFactory.newLatLng(initialPosition))
     }
@@ -106,6 +108,7 @@ createMapFragment()
         latitude = p0.latitude.toString()
         mMap.clear();
         var positionCustom = LatLng(p0.latitude, p0.longitude)
+
         mMap.addMarker(MarkerOptions().position(positionCustom).title("ME"))
         mMap.moveCamera(CameraUpdateFactory.newLatLng(positionCustom))
     }

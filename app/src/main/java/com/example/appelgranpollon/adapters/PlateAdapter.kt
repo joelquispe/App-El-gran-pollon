@@ -31,11 +31,12 @@ import retrofit2.Response
 
 class PlateAdapter(var context: Context, var arrayList: ArrayList<PlateData>):
     RecyclerView.Adapter<PlateAdapter.ItemHolder>(){
-
+    lateinit var cart:CartData;
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemHolder {
 
         val itemHolder = LayoutInflater.from(parent.context)
             .inflate(R.layout.card_plate,parent,false)
+        getCart(itemHolder);
         itemHolder.findViewById<MaterialCardView>(R.id.item_plate).setOnClickListener {
             var product:PlateData = arrayList.get(getClickedPosition(itemHolder));
             Log.d("LOGGING","CACACA")
@@ -47,24 +48,24 @@ class PlateAdapter(var context: Context, var arrayList: ArrayList<PlateData>):
 
             var product:PlateData = arrayList.get(getClickedPosition(itemHolder));
             Log.d("LOGGING",product.toString());
-            val client:ClientData = Gson().fromJson(SharedPrefs(itemHolder.context).getUser(),ClientData::class.java);
-            val cartData:CartData = CartData(total = "0.00", isInOrder = false, cliente =ClientData(id = client.id) )
-            addItemToCart(cartData);
-            val cartt:CartData = CartData(id = 3)
+//            val client:ClientData = Gson().fromJson(SharedPrefs(itemHolder.context).getUser(),ClientData::class.java);
+//            val cartData:CartData = CartData(total = "0.00", isInOrder = false, cliente =ClientData(id = client.id) )
+//            addItemToCart(cartData);
+//            val cartt:CartData = CartData(id = 3)
 //
-//            var cartItem:CartITemData = CartITemData(quantity = "1", product = product, cart = cartt  );
-//            Log.d("LOGGING",cartItem.toString());
-//            val call = RestEngine.getRestEngine().create(ApiClient::class.java).addItem(cartItem);
-//            call.enqueue(object : Callback<CartITemData>{
-//                override fun onResponse(call: Call<CartITemData>, response: Response<CartITemData>) {
-//                    Log.d("LOGGING",response.toString());
-//                }
-//
-//                override fun onFailure(call: Call<CartITemData>, t: Throwable) {
-//                    Log.d("LOGGING","error");
-//                }
-//
-//            })
+            var cartItem:CartITemData = CartITemData(quantity = "1", product = product, cart = CartData(id = cart.id)  );
+            Log.d("LOGGING",cartItem.toString());
+            val call = RestEngine.getRestEngine().create(ApiClient::class.java).addItem(cartItem);
+            call.enqueue(object : Callback<CartITemData>{
+                override fun onResponse(call: Call<CartITemData>, response: Response<CartITemData>) {
+                    Log.d("LOGGING",response.toString());
+                }
+
+                override fun onFailure(call: Call<CartITemData>, t: Throwable) {
+                    Log.d("LOGGING","error");
+                }
+
+            })
 //            var cartItemQuantity:CartITemData = CartITemData(quantity = "2");
 //            val callquantity = RestEngine.getRestEngine().create(ApiClient::class.java).editQuantityItem(3,cartItemQuantity);
 //            callquantity.enqueue(object : Callback<CartITemData>{
@@ -125,7 +126,11 @@ class PlateAdapter(var context: Context, var arrayList: ArrayList<PlateData>):
             }
         })
     }
+    fun getCart(view:View){
+        val data =  SharedPrefs(view.context).getCart();
+        cart = Gson().fromJson(data, CartData::class.java)
 
+    }
     fun createCart(cartData: CartData){
         val call =  RestEngine.getRestEngine().create(ApiClient::class.java).createCart(cartData);
         call.enqueue(object:Callback<CartData>{

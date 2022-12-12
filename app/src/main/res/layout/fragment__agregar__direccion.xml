@@ -85,11 +85,15 @@
                     android:layout_height="130dp"
                     android:layout_margin="20dp"
                     android:id="@+id/mapView" /> -->
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:text="Marcar tu dirección"
+                      android:textSize="15sp"
+            />
             <fragment
                     android:id="@+id/map"
                     android:name="com.google.android.gms.maps.SupportMapFragment"
                     android:layout_width="match_parent"
-                    android:layout_height="450dp"
+                    android:layout_height="350dp"
                     android:layout_marginStart="5dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginEnd="5dp"

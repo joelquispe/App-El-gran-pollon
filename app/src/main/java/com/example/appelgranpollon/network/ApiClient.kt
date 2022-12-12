@@ -23,6 +23,11 @@ interface ApiClient {
     @POST("api/cliente/registrar")
     fun registerClient(@Body customer:ClientData):Call<ClientData>;
 
+
+    @Headers("Content-Type: application/json")
+    @PUT("api/cliente/editar/{id}")
+    fun editClient(@Path("id") id: Int,@Body customer:ClientData):Call<ClientData>;
+
     @GET("api/cliente/listar")
     fun getClients():Call<List<ClientData>>;
 
@@ -43,7 +48,7 @@ interface ApiClient {
     @GET("api/cart/listar/inOrder/{id}")
     fun findCartInOrder(@Path("id") id:Int):Call<List<CartData>>;
 
-    @GET("api/cart/listar/notOrder/{id}")
+    @GET("api/cart/listar/notOrder/customer/{id}")
     fun findCartNotOrder(@Path("id") id:Int):Call<CartData>;
 
     @POST("api/cartItem/registrar")
@@ -58,4 +63,6 @@ interface ApiClient {
     @POST("api/address/registrar")
     fun createAddress(@Body address:AddressData):Call<AddressData>;
 
+    @GET("api/cartItem/listar/cart/{id}")
+    fun getCartItemByCart(@Path("id") id: Int):Call<List<CartITemData>>
 }

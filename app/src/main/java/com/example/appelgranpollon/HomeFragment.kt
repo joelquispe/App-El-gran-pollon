@@ -59,6 +59,7 @@ class  HomeFragment : Fragment()   ,NavigationView.OnNavigationItemSelectedListe
     lateinit var views:View;
     lateinit var name:TextView;
     lateinit var client:ClientData;
+    lateinit var cart: CartData;
     private var recyclerView: RecyclerView ?= null
     private var gridLayoutManager:GridLayoutManager ?= null
     private var arrayList:ArrayList<PlateData> ?= null
@@ -78,6 +79,7 @@ class  HomeFragment : Fragment()   ,NavigationView.OnNavigationItemSelectedListe
         // Inflate the layout for this fragment
         views =  inflater.inflate(R.layout.fragment_home, container, false);
         getProducts()
+
         var texto = getString(R.string.nameUser);
 
 
@@ -140,7 +142,14 @@ class  HomeFragment : Fragment()   ,NavigationView.OnNavigationItemSelectedListe
         if(client != null){
             Log.d("LOGGING",client.toString())
         }
+
     }
+    fun getCart(view:View){
+        val data =  SharedPrefs(view.context).getCart();
+        cart = Gson().fromJson(data, CartData::class.java)
+
+    }
+
     fun initDrawer(){
         val navigationView:NavigationView = views.findViewById<NavigationView>(R.id.navigationViewId);
         val toolbar = views.findViewById<androidx.appcompat.widget.Toolbar>(R.id.toolbarId);
@@ -201,6 +210,7 @@ class  HomeFragment : Fragment()   ,NavigationView.OnNavigationItemSelectedListe
     fun logout(){
         SharedPrefs(this.views.context).removeUser();
         SharedPrefs(this.views.context).removeTypeUser();
+        SharedPrefs(this.views.context).removeCart();
         Navigation.findNavController(views).navigate(R.id.loginFragment);
     }
 

@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
+import com.example.appelgranpollon.Models.CartData
 import com.example.appelgranpollon.Models.ClientData
 import com.example.appelgranpollon.Models.MotorizedData
 import com.example.appelgranpollon.Models.PlateData
@@ -21,6 +22,7 @@ import com.example.appelgranpollon.Services.SharedPrefs
 import com.example.appelgranpollon.enums.TypeUser
 import com.example.appelgranpollon.network.ApiClient
 import com.example.appelgranpollon.network.RestEngine
+import com.google.android.gms.common.api.Api
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.material.switchmaterial.SwitchMaterial
 import com.google.android.material.textfield.TextInputEditText
@@ -29,6 +31,7 @@ import com.google.firebase.messaging.FirebaseMessaging
 import com.google.gson.Gson
 import retrofit2.Call
 import retrofit2.Callback
+import retrofit2.Response
 import java.lang.reflect.Type
 
 // TODO: Rename parameter arguments, choose names that match
@@ -46,6 +49,7 @@ class LoginFragment : Fragment() {
 
     private lateinit var viewOfLayout: View
     lateinit var navController:NavController;
+    lateinit var fcmtokens:String;
 
     var isEmailValidate =false;
     var isPasswordValidate=false;
@@ -60,7 +64,7 @@ class LoginFragment : Fragment() {
 
         // Inflate the layout for this fragment
         viewOfLayout =inflater.inflate(R.layout.fragment_login, container, false)
-
+        generateTokenFcm()
         val isMotorized = viewOfLayout.findViewById<SwitchMaterial>(R.id.typeUser);
 
         val boton:Button = viewOfLayout.findViewById<Button>(R.id.btnLogin);
@@ -119,15 +123,21 @@ class LoginFragment : Fragment() {
                 response: retrofit2.Response<ClientData>
             ) {
                 try {
-                    val client = Gson().getAdapter(ClientData::class.java).fromJson(response.errorBody()
-                        ?.string());
 
-                    Log.d("LOGGING",client.name)
+                    var client = Gson().getAdapter(ClientData::class.java).fromJson(response.errorBody()
+                        ?.string());
+                    client.fcmtoken = fcmtokens.toString();
+                    refreshFcm(client);
+                    Log.d("LOGGING",client.fcmtoken)
+                    Log.d("LOGGING","ya funciona")
                     if(inputEmail.text.toString() == client.email && inputPassword.text.toString() == client.password){
                         //navegacion entre pantallas
-                        navController.navigate(R.id.homeFragment)
+
                         SharedPrefs(viewOfLayout.context).saveTypeUser(typeUser);
                         SharedPrefs(viewOfLayout.context).saveUser(Gson().toJson(client));
+                        getCart(client)
+                        navController.navigate(R.id.homeFragment)
+
                     }
                 }catch (e:Exception) {
                     Toast.makeText(context,"Usuario Invalido",Toast.LENGTH_SHORT).show();
@@ -200,7 +210,7 @@ class LoginFragment : Fragment() {
         getUser()
     }
 
-    fun messagins(){
+    fun generateTokenFcm(){
         FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
             if (!task.isSuccessful) {
                 Log.w("info", "Fetching FCM registration token failed", task.exception)
@@ -209,9 +219,38 @@ class LoginFragment : Fragment() {
 
             // Get new FCM registration token
             val token = task.result
+            fcmtokens = token.toString();
             Log.d("INFO",token.toString())
 
         })
     }
+    fun getCart(client:ClientData){
+        val call = RestEngine.getRestEngine().create(ApiClient::class.java).findCartNotOrder(client.id!!)
+        val res = call.execute();
+        try {
+            val cart: CartData = Gson().getAdapter(CartData::class.java).fromJson(res.errorBody()?.string())
+            SharedPrefs(viewOfLayout.context).saveCart(Gson().toJson(cart))
+            Log.d("INFO","bien")
+            Log.d("INFO",cart.toString())
+        }catch (t:Throwable){
+            Log.d("INFO","mal")
+            Log.d("INFO",res.body().toString())
 
+        }
+
+
+    }
+    fun refreshFcm(cliente:ClientData){
+        val call = RestEngine.getRestEngine().create(ApiClient::class.java).editClient(id = cliente.id!!, customer = cliente);
+       call.enqueue(object:Callback<ClientData>{
+           override fun onResponse(call: Call<ClientData>, response: Response<ClientData>) {
+               Log.d("INFO",response.toString())
+           }
+
+           override fun onFailure(call: Call<ClientData>, t: Throwable) {
+               Log.d("INFO","mal")
+           }
+       })
+
+    }
 }

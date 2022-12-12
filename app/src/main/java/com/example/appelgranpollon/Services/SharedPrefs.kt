@@ -6,7 +6,7 @@ class SharedPrefs(val context:Context) {
     val SHARED_NAME = "pollon";
     val SHARED_USER = "user";
     val SHARED_TYPE_USER = "typeuser";
-
+    val SHARED_CART= "cart";
     val storage = context.getSharedPreferences(SHARED_NAME,0);
     fun saveUser(user:String){
         storage.edit().putString(SHARED_USER,user).apply();
@@ -28,4 +28,14 @@ class SharedPrefs(val context:Context) {
         storage.edit().remove(SHARED_TYPE_USER).commit();
     }
 
+    fun saveCart(cart:String){
+        storage.edit().putString(SHARED_CART,cart).apply();
+    }
+
+    fun getCart():String{
+        return storage.getString(SHARED_CART,"null")!!;
+    }
+    fun removeCart(){
+        storage.edit().remove(SHARED_CART).commit();
+    }
 }

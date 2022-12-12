@@ -17,7 +17,9 @@ import com.example.appelgranpollon.Services.SharedPrefs
 import com.example.appelgranpollon.enums.TypeUser
 import com.example.appelgranpollon.network.ApiClient
 import com.example.appelgranpollon.network.RestEngine
+import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.material.textfield.TextInputEditText
+import com.google.firebase.messaging.FirebaseMessaging
 import com.google.gson.Gson
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -41,6 +43,7 @@ class RegisterFragment : Fragment() {
 
     lateinit var  customer:ClientData;
     lateinit var views:View;
+    lateinit var fcmtoken:String;
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -52,6 +55,7 @@ class RegisterFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         views = inflater.inflate(R.layout.fragment_register, container, false)
+        generateTokenFcm();
         val inputEmail = views.findViewById<TextInputEditText>(R.id.inputEmailRegister);
         val inputPassword = views.findViewById<TextInputEditText>(R.id.inputPasswordRegister);
         val inputName = views.findViewById<TextInputEditText>(R.id.inputNameRegister);
@@ -62,7 +66,7 @@ class RegisterFragment : Fragment() {
         val txtLogin = views.findViewById<TextView>(R.id.txtLogin);
         val btnRegister = views.findViewById<Button>(R.id.btnRegister);
         btnRegister.setOnClickListener {
-            customer = ClientData(email = inputEmail.text.toString(), password = inputPassword.text.toString(), name = inputName.text.toString(), lastname = inputLastname.text.toString(), phone = inputPhone.text.toString(), dateofbirth = inputDateOfBirth.text.toString())
+            customer = ClientData(email = inputEmail.text.toString(), password = inputPassword.text.toString(), name = inputName.text.toString(), lastname = inputLastname.text.toString(), phone = inputPhone.text.toString(), dateofbirth = inputDateOfBirth.text.toString(), fcmtoken = fcmtoken)
             Log.d("LOGGING",customer.toString())
 
             try {
@@ -125,7 +129,7 @@ class RegisterFragment : Fragment() {
             Log.d("LOGGING",customerr.toString())
             SharedPrefs(views.context).saveTypeUser(TypeUser.Customer.name);
             SharedPrefs(views.context).saveUser(Gson().toJson(customerr));
-            createCart();
+            getCart(customerr)
             Navigation.findNavController(views).navigate(R.id.homeFragment);
         }catch (t:Throwable){
             val customerr = Gson().getAdapter(ClientData::class.java).fromJson(res.errorBody()?.string());
@@ -134,6 +138,36 @@ class RegisterFragment : Fragment() {
             Navigation.findNavController(views).navigate(R.id.homeFragment);
 
         }
+    }
+    fun getCart(client:ClientData){
+        val call = RestEngine.getRestEngine().create(ApiClient::class.java).findCartNotOrder(client.id!!)
+        val res = call.execute();
+        try {
+            val cart:CartData = Gson().getAdapter(CartData::class.java).fromJson(res.errorBody()?.string())
+            SharedPrefs(views.context).saveCart(Gson().toJson(cart))
+            Log.d("INFO","bien")
+            Log.d("INFO",cart.toString())
+        }catch (t:Throwable){
+            Log.d("INFO","mal")
+            Log.d("INFO",res.body().toString())
+
+        }
+
+
+    }
+    fun generateTokenFcm(){
+        FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
+            if (!task.isSuccessful) {
+                Log.w("info", "Fetching FCM registration token failed", task.exception)
+                return@OnCompleteListener
+            }
+
+            // Get new FCM registration token
+            val token = task.result
+            fcmtoken = token.toString();
+            Log.d("INFO",token.toString())
+
+        })
     }
 
 

@@ -8,6 +8,7 @@ data class ClientData (
     val email:String="",
     val password:String="",
     val phone:String="",
+    var fcmtoken:String=""
 
 
 );
