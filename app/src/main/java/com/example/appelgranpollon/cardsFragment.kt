@@ -53,7 +53,9 @@ class cardsFragment : Fragment() {
         val response = call.execute();
         Log.d("LOGGING","asdcomenzando");
         Log.d("LOGGING",response.body().toString());
-
+        if(response.body().toString() == "null"){
+            cards = ArrayList()
+        }
 
         var resCards:List<CardData>?  = response.body();
         if (resCards != null) {

@@ -57,7 +57,10 @@ class addressFragment : Fragment() {
         val response = call.execute();
         Log.d("LOGGING","asdcomenzando");
         Log.d("LOGGING",response.body().toString());
-
+        if(response.body().toString() =="null"){
+            addresses = ArrayList();
+            return;
+        }
 
         var resAddresses:List<AddressData>?  = response.body();
         if (resAddresses != null) {
