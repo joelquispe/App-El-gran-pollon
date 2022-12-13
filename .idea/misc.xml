@@ -4,8 +4,9 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/IDAT/Ciclo VI/Proyecto GranPollon/appElGranPollon/App-El-gran-pollon/app/src/main/res/drawable-v24/ic_baseline_add_circle_24.xml" value="0.118" />
+        <entry key="..\:/IDAT/Ciclo VI/Proyecto GranPollon/appElGranPollon/App-El-gran-pollon/app/src/main/res/layout/card_address.xml" value="0.26268115942028986" />
         <entry key="..\:/IDAT/Ciclo VI/Proyecto GranPollon/appElGranPollon/App-El-gran-pollon/app/src/main/res/layout/card_order.xml" value="0.1762917933130699" />
-        <entry key="..\:/IDAT/Ciclo VI/Proyecto GranPollon/appElGranPollon/App-El-gran-pollon/app/src/main/res/layout/card_order_detail.xml" value="0.1762917933130699" />
+        <entry key="..\:/IDAT/Ciclo VI/Proyecto GranPollon/appElGranPollon/App-El-gran-pollon/app/src/main/res/layout/card_order_detail.xml" value="0.33" />
         <entry key="..\:/IDAT/Ciclo VI/Proyecto GranPollon/appElGranPollon/App-El-gran-pollon/app/src/main/res/layout/fragment__agregar__direccion.xml" value="0.22" />
         <entry key="..\:/IDAT/Ciclo VI/Proyecto GranPollon/appElGranPollon/App-El-gran-pollon/app/src/main/res/layout/fragment__compra__rechazada.xml" value="0.12407407407407407" />
         <entry key="..\:/IDAT/Ciclo VI/Proyecto GranPollon/appElGranPollon/App-El-gran-pollon/app/src/main/res/layout/fragment_card.xml" value="0.12407407407407407" />
@@ -18,7 +19,7 @@
         <entry key="..\:/IDAT/Ciclo VI/Proyecto GranPollon/appElGranPollon/App-El-gran-pollon/app/src/main/res/layout/fragment_pago__realizao.xml" value="0.12407407407407407" />
         <entry key="..\:/IDAT/Ciclo VI/Proyecto GranPollon/appElGranPollon/App-El-gran-pollon/app/src/main/res/layout/fragment_pay.xml" value="0.12407407407407407" />
         <entry key="..\:/IDAT/Ciclo VI/Proyecto GranPollon/appElGranPollon/App-El-gran-pollon/app/src/main/res/layout/fragment_profile.xml" value="0.1762917933130699" />
-        <entry key="..\:/IDAT/Ciclo VI/Proyecto GranPollon/appElGranPollon/App-El-gran-pollon/app/src/main/res/layout/fragment_shopping_cart.xml" value="0.1" />
+        <entry key="..\:/IDAT/Ciclo VI/Proyecto GranPollon/appElGranPollon/App-El-gran-pollon/app/src/main/res/layout/fragment_shopping_cart.xml" value="0.33" />
         <entry key="..\:/IDAT/ciclosix/DevelopMobile2/AppElGranPollon/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/IDAT/ciclosix/DevelopMobile2/AppElGranPollon/app/src/main/res/layout/card_address.xml" value="0.1" />
         <entry key="..\:/IDAT/ciclosix/DevelopMobile2/AppElGranPollon/app/src/main/res/layout/card_cards.xml" value="0.22488242838820008" />

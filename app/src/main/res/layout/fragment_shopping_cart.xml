@@ -23,6 +23,7 @@
                 android:textAlignment="viewStart" />
 
         <ListView
+                android:id="@+id/list_cart"
                 android:layout_width="match_parent"
                 android:layout_height="375dp"
                 tools:listitem="@layout/card_order_detail">
