@@ -28,7 +28,7 @@ class AddressAdapter (var context: Context, var arrayList: ArrayList<AddressData
             var bundle: Bundle = Bundle();
 
             bundle.putString("address",arrayList.get(valor).address)
-            Navigation.findNavController(itemHolder).navigate(R.id.addressFragment,bundle)
+            Navigation.findNavController(itemHolder).navigate(R.id.methodPayFragment,bundle)
 
 
 

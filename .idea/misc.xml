@@ -20,6 +20,10 @@
         <entry key="..\:/IDAT/Ciclo VI/Proyecto GranPollon/appElGranPollon/App-El-gran-pollon/app/src/main/res/layout/fragment_pay.xml" value="0.12407407407407407" />
         <entry key="..\:/IDAT/Ciclo VI/Proyecto GranPollon/appElGranPollon/App-El-gran-pollon/app/src/main/res/layout/fragment_profile.xml" value="0.1762917933130699" />
         <entry key="..\:/IDAT/Ciclo VI/Proyecto GranPollon/appElGranPollon/App-El-gran-pollon/app/src/main/res/layout/fragment_shopping_cart.xml" value="0.33" />
+        <entry key="..\:/IDAT/ciclosix/DevelopMobile2/AppElGranPollon/app/src/main/res/drawable-v24/ic_baseline_add_circle_24.xml" value="0.1" />
+        <entry key="..\:/IDAT/ciclosix/DevelopMobile2/AppElGranPollon/app/src/main/res/drawable/ic_baseline_account_circle_24.xml" value="0.1" />
+        <entry key="..\:/IDAT/ciclosix/DevelopMobile2/AppElGranPollon/app/src/main/res/drawable/ic_baseline_remove_circle_24.xml" value="0.1" />
+        <entry key="..\:/IDAT/ciclosix/DevelopMobile2/AppElGranPollon/app/src/main/res/drawable/ic_baseline_shopping_cart_24.xml" value="0.1" />
         <entry key="..\:/IDAT/ciclosix/DevelopMobile2/AppElGranPollon/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/IDAT/ciclosix/DevelopMobile2/AppElGranPollon/app/src/main/res/layout/card_address.xml" value="0.1" />
         <entry key="..\:/IDAT/ciclosix/DevelopMobile2/AppElGranPollon/app/src/main/res/layout/card_cards.xml" value="0.22488242838820008" />
@@ -38,7 +42,7 @@
         <entry key="..\:/IDAT/ciclosix/DevelopMobile2/AppElGranPollon/app/src/main/res/layout/fragment_details_plate.xml" value="0.1" />
         <entry key="..\:/IDAT/ciclosix/DevelopMobile2/AppElGranPollon/app/src/main/res/layout/fragment_home.xml" value="0.1278324070115434" />
         <entry key="..\:/IDAT/ciclosix/DevelopMobile2/AppElGranPollon/app/src/main/res/layout/fragment_login.xml" value="0.25" />
-        <entry key="..\:/IDAT/ciclosix/DevelopMobile2/AppElGranPollon/app/src/main/res/layout/fragment_method_pay.xml" value="0.1368106028217187" />
+        <entry key="..\:/IDAT/ciclosix/DevelopMobile2/AppElGranPollon/app/src/main/res/layout/fragment_method_pay.xml" value="0.2" />
         <entry key="..\:/IDAT/ciclosix/DevelopMobile2/AppElGranPollon/app/src/main/res/layout/fragment_motorized.xml" value="0.1368106028217187" />
         <entry key="..\:/IDAT/ciclosix/DevelopMobile2/AppElGranPollon/app/src/main/res/layout/fragment_motorized_home.xml" value="0.17015818725951262" />
         <entry key="..\:/IDAT/ciclosix/DevelopMobile2/AppElGranPollon/app/src/main/res/layout/fragment_orders.xml" value="0.1" />

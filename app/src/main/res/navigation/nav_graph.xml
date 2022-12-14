@@ -105,7 +105,9 @@
               android:name="com.example.appelgranpollon.Fragment_Agregar_Direccion"
               android:label="fragment__agregar__direccion" tools:layout="@layout/fragment__agregar__direccion"/>
     <fragment android:id="@+id/addressFragment" android:name="com.example.appelgranpollon.addressFragment"
-              android:label="fragment_address" tools:layout="@layout/fragment_address"/>
+              android:label="fragment_address" tools:layout="@layout/fragment_address">
+        <action android:id="@+id/action_addressFragment_to_methodPayFragment" app:destination="@id/methodPayFragment"/>
+    </fragment>
     <fragment android:id="@+id/ordersFragment" android:name="com.example.appelgranpollon.OrdersFragment"
               android:label="fragment_orders" tools:layout="@layout/fragment_orders"/>
     <fragment android:id="@+id/motorizedHomeFragment" android:name="com.example.appelgranpollon.MotorizedHomeFragment"
@@ -121,4 +123,11 @@
               android:label="fragment_card" tools:layout="@layout/fragment_card"/>
     <fragment android:id="@+id/cardsFragment" android:name="com.example.appelgranpollon.cardsFragment"
               android:label="fragment_cards" tools:layout="@layout/fragment_cards"/>
+    <fragment android:id="@+id/methodPayFragment" android:name="com.example.appelgranpollon.MethodPayFragment"
+              android:label="fragment_method_pay" tools:layout="@layout/fragment_method_pay">
+        <action android:id="@+id/action_methodPayFragment_to_fragment_pago_Realizao"
+                app:destination="@id/fragment_pago_Realizao"/>
+    </fragment>
+    <fragment android:id="@+id/fragment_pago_Realizao" android:name="com.example.appelgranpollon.fragment_pago_Realizao"
+              android:label="fragment_pago__realizao" tools:layout="@layout/fragment_pago__realizao"/>
 </navigation>

@@ -39,7 +39,7 @@ class PlateAdapter(var context: Context, var arrayList: ArrayList<PlateData>):
         getCart(itemHolder);
         itemHolder.findViewById<MaterialCardView>(R.id.item_plate).setOnClickListener {
             var product:PlateData = arrayList.get(getClickedPosition(itemHolder));
-            Log.d("LOGGING","CACACA")
+
             val bundleDetails:Bundle = Bundle();
             bundleDetails.putString("product",Gson().toJson(product))
             Navigation.findNavController(itemHolder).navigate(R.id.detailsPlateFragment,bundleDetails);

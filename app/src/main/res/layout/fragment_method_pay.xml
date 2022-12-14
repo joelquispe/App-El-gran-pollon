@@ -42,29 +42,11 @@
 
         </TableRow>
 
-        <Button
-                android:layout_width="50dp"
-                android:layout_height="60dp"
-                android:drawableLeft="@drawable/ic_baseline_credit_card_24"
-                android:backgroundTint="@color/gray"
-                android:layout_marginStart="25dp"
-                android:layout_marginEnd="50dp"
-                android:text="1234 #### #### ####"
-                android:textStyle="normal"
-                android:textSize="20dp"
-                android:textColor="@color/white"/>
-
-        <Button
-                android:layout_width="50dp"
-                android:layout_height="60dp"
-                android:drawableLeft="@drawable/ic_baseline_credit_card_24"
-                android:backgroundTint="@color/gray"
-                android:layout_marginStart="25dp"
-                android:layout_marginEnd="50dp"
-                android:text="1234 #### #### ####"
-                android:textStyle="normal"
-                android:textSize="20dp"
-                android:textColor="@color/white"/>
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/RecyclerCards2"
+                android:layout_width="match_parent"
+                android:layout_height="240dp"
+                tools:listitem="@layout/card_cards"/>
 
 
         <TableRow
@@ -94,7 +76,11 @@
                 android:textStyle="normal"
                 android:textSize="18dp"
                 android:textColor="@color/white"/>
-
+        <Button
+                android:id="@+id/btnRealizarPedido"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:text="Realizar pedido"
+        />
     </TableLayout>
 
 

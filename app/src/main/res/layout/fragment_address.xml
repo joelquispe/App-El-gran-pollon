@@ -24,7 +24,7 @@
                 />
 
         <Button
-                android:id="@+id/id_boton"
+                android:id="@+id/btnNextAddress"
                 android:text="siguiente"
                 android:layout_width="345dp"
                 android:layout_height="50dp"

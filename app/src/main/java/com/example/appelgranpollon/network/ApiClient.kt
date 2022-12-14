@@ -69,6 +69,8 @@ interface ApiClient {
     @GET("api/order/listar/customer/{id}")
     fun getOrders(@Path("id") id:Int):Call<List<OrderData>>
 
+    @GET("api/order/registrar")
+    fun createOrder(@Body order:OrderData):Call<OrderData>
     @Headers("Content-Type: application/json")
     @GET("api/creditCard/listar/customer/{id}")
     fun getCardsByCustomer(@Path("id") id:Int):Call<List<CardData>>
