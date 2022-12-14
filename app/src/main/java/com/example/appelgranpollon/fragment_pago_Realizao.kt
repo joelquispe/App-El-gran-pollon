@@ -1,10 +1,13 @@
 package com.example.appelgranpollon
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -28,6 +31,9 @@ class fragment_pago_Realizao : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+        Handler(Looper.myLooper()!!).postDelayed({
+            findNavController().navigate(R.id.homeFragment)
+        },2000)
         return inflater.inflate(R.layout.fragment_pago__realizao, container, false)
     }
 

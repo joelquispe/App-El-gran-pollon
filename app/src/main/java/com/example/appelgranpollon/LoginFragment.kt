@@ -164,7 +164,7 @@ class LoginFragment : Fragment() {
                     Log.d("LOGGING",motorized.name)
                     if(inputEmail.text.toString() == motorized.email && inputPassword.text.toString() == motorized.password){
                         //navegacion entre pantallas
-                        navController.navigate(R.id.motorizedFragment)
+                        navController.navigate(R.id.motorizedHomeFragment)
                         SharedPrefs(viewOfLayout.context).saveTypeUser(typeUser);
                         SharedPrefs(viewOfLayout.context).saveUser(Gson().toJson(motorized));
                     }

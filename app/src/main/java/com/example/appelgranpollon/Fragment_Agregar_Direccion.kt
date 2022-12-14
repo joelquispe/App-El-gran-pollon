@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ScrollView
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.example.appelgranpollon.Models.AddressData
@@ -26,7 +27,8 @@ import retrofit2.Callback
 import retrofit2.Response
 
 
-class Fragment_Agregar_Direccion : Fragment(), OnMapReadyCallback , GoogleMap.OnMapClickListener, GoogleMap.OnMapLongClickListener{
+class Fragment_Agregar_Direccion : Fragment(), OnMapReadyCallback , GoogleMap.OnMapClickListener, GoogleMap.OnMapLongClickListener,
+    GoogleMap.OnCameraMoveStartedListener{
     lateinit var client: ClientData
     lateinit var views:View;
     lateinit var inputAddress: TextInputEditText;
@@ -36,6 +38,7 @@ class Fragment_Agregar_Direccion : Fragment(), OnMapReadyCallback , GoogleMap.On
     lateinit var inputStreet: TextInputEditText;
     lateinit var btnSaveAddress: Button;
     lateinit var longitude:String;
+    lateinit var scrollviewFragment:ScrollView;
     lateinit var latitude:String;
     lateinit var mMap:GoogleMap;
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,6 +54,7 @@ class Fragment_Agregar_Direccion : Fragment(), OnMapReadyCallback , GoogleMap.On
         views =  inflater.inflate(R.layout.fragment__agregar__direccion, container, false)
         getUser(views)
 createMapFragment()
+        scrollviewFragment = views.findViewById<ScrollView>(R.id.scrollviewFragment)
         inputAddress = views.findViewById<TextInputEditText>(R.id.inputDirection)
         inputCity = views.findViewById<TextInputEditText>(R.id.inputCity)
         inputNumber = views.findViewById<TextInputEditText>(R.id.inputNumber)
@@ -67,6 +71,7 @@ createMapFragment()
     }
     private fun createMapFragment(){
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment;
+
         mapFragment.getMapAsync(this);
     }
     private fun getUser(view:View){
@@ -97,7 +102,7 @@ createMapFragment()
         mMap = p0;
         this.mMap.setOnMapClickListener(this)
         this.mMap.setOnMapLongClickListener(this)
-
+        this.mMap.setOnCameraMoveStartedListener(this);
         val initialPosition = LatLng(-12.07469232190916, -77.06610142422456)
         mMap.addMarker(MarkerOptions().position(initialPosition).title("ME"))
         mMap.moveCamera(CameraUpdateFactory.newLatLng(initialPosition))
@@ -115,6 +120,21 @@ createMapFragment()
 
     override fun onMapLongClick(p0: LatLng) {
         TODO("Not yet implemented")
+    }
+
+    override fun onCameraMoveStarted(reason: Int) {
+        if (reason == GoogleMap.OnCameraMoveStartedListener.REASON_GESTURE) {
+            scrollviewFragment.requestDisallowInterceptTouchEvent(true);
+
+        } else if (reason == GoogleMap.OnCameraMoveStartedListener
+                .REASON_API_ANIMATION) {
+            scrollviewFragment.requestDisallowInterceptTouchEvent(true);
+
+        } else if (reason == GoogleMap.OnCameraMoveStartedListener
+                .REASON_DEVELOPER_ANIMATION) {
+            scrollviewFragment.requestDisallowInterceptTouchEvent(true);
+
+        }
     }
 
 

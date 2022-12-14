@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.example.appelgranpollon.Services.SharedPrefs
 import com.example.appelgranpollon.databinding.FragmentMotorizedHomeBinding
@@ -35,6 +36,7 @@ class MotorizedHomeFragment : Fragment() {
         viewfrag = inflater.inflate(R.layout.fragment_motorized_home, container, false);
         val button:Button = viewfrag.findViewById<Button>(R.id.button2);
         button.setOnClickListener {
+            logout()
 
         }
         return viewfrag;
