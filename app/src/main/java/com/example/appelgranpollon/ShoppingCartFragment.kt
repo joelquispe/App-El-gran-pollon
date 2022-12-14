@@ -22,6 +22,9 @@ import com.example.appelgranpollon.adapters.ShoppingCartAdapter
 import com.example.appelgranpollon.network.ApiClient
 import com.example.appelgranpollon.network.RestEngine
 import com.google.gson.Gson
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import kotlin.properties.Delegates
 
 // TODO: Rename parameter arguments, choose names that match
@@ -68,10 +71,12 @@ class ShoppingCartFragment : Fragment() {
         recyclerView?.layoutManager = gridLayoutManager;
         cartAdapter = ShoppingCartAdapter(views.context,cardItems)
         recyclerView?.adapter = cartAdapter
+
         backbutton.setOnClickListener {
             navController.navigate(R.id.homeFragment);
         }
         btnNext.setOnClickListener {
+            editCart()
             navController.navigate(R.id.addressFragment);
         }
 
@@ -90,6 +95,10 @@ class ShoppingCartFragment : Fragment() {
 
         try{
             val listCartItems:List<CartITemData>? = res.body();
+            if(res.body().toString() == "null"){
+                cardItems = ArrayList();
+            }
+            Log.d("INFO",res.body().toString())
             if(listCartItems != null){
                 cardItems =ArrayList(listCartItems);
             }
@@ -104,13 +113,31 @@ class ShoppingCartFragment : Fragment() {
     }
 
     fun getDataCart(){
-        for(c in cardItems){
-            subtotal += c.product!!.price.toDouble() * c.quantity.toInt()
+        if(cardItems.isNotEmpty()){
+            for(c in cardItems){
+                subtotal += c.product!!.price.toDouble() * c.quantity.toInt()
 
+            }
+            total = subtotal + 10.0;
+            txtTotal.text = "S/"+total.toString();
+            txtSubtotal.text ="S/"+subtotal.toString();
         }
-        total = subtotal + 10.0;
-        txtTotal.text = "S/"+total.toString();
-        txtSubtotal.text ="S/"+subtotal.toString();
+
+    }
+    fun editCart(){
+        cart.total = total.toString();
+        Log.d("INFO",cart.toString())
+        val call = RestEngine.getRestEngine().create(ApiClient::class.java).editCart(cart.id!!,cart)
+        call.enqueue(object: Callback<CartData> {
+            override fun onResponse(call: Call<CartData>, response: Response<CartData>) {
+                Log.d("INFO","bien")
+            }
+
+            override fun onFailure(call: Call<CartData>, t: Throwable) {
+                Log.d("INFO","mal")
+                SharedPrefs(views.context).saveCart(Gson().toJson(cart))
+            }
+        })
     }
 
 }

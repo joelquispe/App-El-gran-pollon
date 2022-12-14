@@ -27,7 +27,7 @@ class AddressAdapter (var context: Context, var arrayList: ArrayList<AddressData
             Log.d("LOGGING", arrayList.get(valor).toString());
             var bundle: Bundle = Bundle();
 
-            bundle.putString("address",arrayList.get(valor).address)
+            bundle.putString("address",arrayList.get(valor).idAddress.toString())
             Navigation.findNavController(itemHolder).navigate(R.id.methodPayFragment,bundle)
 
 

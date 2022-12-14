@@ -69,7 +69,7 @@ interface ApiClient {
     @GET("api/order/listar/customer/{id}")
     fun getOrders(@Path("id") id:Int):Call<List<OrderData>>
 
-    @GET("api/order/registrar")
+    @POST("api/order/registrar")
     fun createOrder(@Body order:OrderData):Call<OrderData>
     @Headers("Content-Type: application/json")
     @GET("api/creditCard/listar/customer/{id}")
@@ -78,4 +78,8 @@ interface ApiClient {
     @Headers("Content-Type: application/json")
     @GET("api/address/listar/customer/{id}")
     fun getAddressByCustomer(@Path("id") id:Int):Call<List<AddressData>>
+
+    @Headers("Content-Type: application/json")
+    @PUT("api/cart/editar/{id}")
+    fun editCart(@Path("id") id: Int,@Body cart:CartData):Call<CartData>;
 }

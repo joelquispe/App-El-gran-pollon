@@ -62,18 +62,22 @@
                     android:orientation="horizontal"
 
                     >
-                        <ImageButton android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        <ImageButton
+                                android:id="@+id/btnMinusQuantity"
+                                android:layout_width="wrap_content" android:layout_height="wrap_content"
                         android:src="@drawable/ic_baseline_remove_circle_24"
                         />
                         <TextView
                                 android:id="@+id/txtCantidad"
                                 android:textStyle="bold"
-                                android:layout_width="10dp"
+                                android:layout_width="40dp"
                                 android:textSize="25dp"
 
                                 android:layout_height="wrap_content"
                                 android:text="Cantidad : 2"/>
-                        <ImageButton android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        <ImageButton
+                                android:id="@+id/btnAddQuantity"
+                                android:layout_width="wrap_content" android:layout_height="wrap_content"
                                      android:src="@drawable/ic_baseline_add_circle_24"
                         />
                     </LinearLayout>
